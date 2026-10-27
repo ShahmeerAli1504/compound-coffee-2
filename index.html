@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Compound Coffee | Mobile Coffee Truck in Reno, NV</title>
+  <meta name="description" content="The Compound Coffee — Reno's street-art coffee truck. Specialty drinks, breakfast sandwiches, workplace catering, private events and pop-ups. Where coffee is subjective.">
+  <meta name="theme-color" content="#0b0a1c">
+  <meta property="og:title" content="The Compound Coffee — Reno, NV">
+  <meta property="og:description" content="Specialty coffee with a street-art soul. Find the truck, see the menu, book us for your event.">
+  <meta property="og:image" content="assets/img/truck-night.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Rubik+Wet+Paint&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"The Compound Coffee","description":"Mobile specialty coffee truck in Reno, Nevada.","telephone":"+1-775-354-3532","email":"thecompound.inc24@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Reno","addressRegion":"NV","addressCountry":"US"},"openingHours":"Mo-Su 07:00-17:00","founder":"Jaffet Corona","sameAs":["https://www.instagram.com/_thecompoundcoffee/","https://www.tiktok.com/@_thecompoundcoffee","https://www.yelp.com/biz/compound-coffee-reno"]}
+  </script>
+</head>
+<body>
+
+<!-- reusable paper-bag mascot -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bag" viewBox="0 0 120 130">
+    <path d="M14 14 L106 14 L110 108 L100 100 L90 110 L80 100 L70 110 L60 100 L50 110 L40 100 L30 110 L20 100 L10 108 Z" fill="#c9935b" stroke="#121016" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M14 14 L24 4 L96 4 L106 14" fill="#e0ad73" stroke="#121016" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M30 26 L36 92" stroke="#a87443" stroke-width="3" opacity=".6"/>
+    <rect x="32" y="52" width="20" height="7" rx="2" fill="#121016"/>
+    <g class="eye-x" style="transform-origin:78px 55px"><path d="M70 46 L86 64 M86 46 L70 64" stroke="#121016" stroke-width="7" stroke-linecap="round"/></g>
+  </symbol>
+</svg>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div><svg class="bag"><use href="#bag"/></svg><p>brewing…</p></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="The Compound Coffee home">
+      <img src="assets/img/logo-badge.jpg" alt="">
+      <span>The Compound<small>COFFEE • RENO NV</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#story">Story</a><a href="#menu">Menu</a><a href="#film">After Hours</a><a href="#events">Find Us</a><a href="#hours">Hours</a><a href="#contact">Contact</a>
+      <a class="btn" href="#book" style="margin-left:8px;padding:11px 18px;box-shadow:4px 4px 0 var(--sky)">Book Us</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mMenu">Menu +</button>
+  </div>
+</nav>
+<div class="m-menu" id="mMenu" aria-hidden="true">
+  <button class="close" id="menuClose">Close ×</button>
+  <a href="#story">Story</a><a href="#menu">Menu</a><a href="#film">After Hours</a><a href="#events">Find the Truck</a><a href="#hours">Hours</a><a href="#book">Book Us</a><a href="#contact">Contact</a>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero" aria-label="The Compound Coffee truck">
+  <div class="hero-pin">
+    <div class="stars"></div>
+    <div class="hero-glow"></div>
+    <h1 class="hero-word" id="heroWord"><span class="the">the</span>Compound<span class="sr"> Coffee — mobile coffee truck in Reno, Nevada</span></h1>
+    <div class="hero-truck" id="heroTruck">
+      <img src="assets/img/truck-night.jpg" alt="The Compound Coffee truck wrapped in street art, parked at night in front of downtown Reno casinos" fetchpriority="high">
+    </div>
+    <div class="hero-sticker" id="heroSticker">Coffee<br>×<br>Culture</div>
+    <svg class="spin-badge" viewBox="0 0 160 160" aria-hidden="true">
+      <defs><path id="circ" d="M80,80 m-62,0 a62,62 0 1,1 124,0 a62,62 0 1,1 -124,0"/></defs>
+      <text><textPath href="#circ">WHERE COFFEE IS SUBJECTIVE ✦ RENO NV ✦ </textPath></text>
+      <use href="#bag" x="50" y="48" width="60" height="64"/>
+    </svg>
+    <div class="wrap hero-bottom">
+      <p>Reno's street-art coffee truck. Specialty drinks named after the songs we love, breakfast sandwiches, and a whole lot of culture — parked at a spot near you.</p>
+      <div class="ctas">
+        <a class="btn" href="#menu">See the Menu</a>
+        <a class="btn sky" href="#events">Find the Truck</a>
+      </div>
+    </div>
+    <div class="scroll-cue">Scroll ↓</div>
+    <div class="hero-reveal" id="heroReveal">
+      <h2 class="mega">Be<br><em>Legendary.</em></h2>
+    </div>
+  </div>
+</section>
+
+<!-- BANDS -->
+<div class="bands" aria-hidden="true">
+  <div class="band b1"><div class="track"><span>Where coffee is subjective</span><span class="star">✦</span><span>Be legendary</span><span class="star">✦</span><span>Where coffee is subjective</span><span class="star">✦</span><span>Be legendary</span><span class="star">✦</span></div></div>
+  <div class="band b2"><div class="track"><span>Coffee × Culture</span><span class="star">✦</span><span>Reno NV</span><span class="star">✦</span><span>Coffee × Culture</span><span class="star">✦</span><span>Reno NV</span><span class="star">✦</span></div></div>
+  <div class="band b3"><div class="track"><span>I ♥ Coffee</span><span class="star">✦</span><span>The Playlist</span><span class="star">✦</span><span>The Setlist</span><span class="star">✦</span><span>I ♥ Coffee</span><span class="star">✦</span><span>The Playlist</span><span class="star">✦</span><span>The Setlist</span><span class="star">✦</span></div></div>
+</div>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div class="story-media rv">
+      <img class="logo" src="assets/img/logo-badge.jpg" alt="The Compound Coffee illustrated logo featuring the paper-bag crew and the truck">
+      <img class="mural" src="assets/img/i-love-coffee-mural.jpg" alt="Truck mural of the paper-bag character pouring milk into a coffee">
+      <span class="quote">"I ♥ coffee"</span>
+    </div>
+    <div class="rv">
+      <span class="eyebrow">The Story</span>
+      <h2 class="mega"><span class="drip">meet</span><span class="flow">The Compound</span></h2>
+      <p><strong>Jaffet Corona</strong> is the founder, barista and vintage seller behind The Compound Coffee. The concept blends specialty drinks, original artwork, mobile coffee service and vintage culture into one recognizable Reno brand.</p>
+      <p>The truck is built for community. Catch it at local pop-ups or bring The Compound to your office, celebration, market or private event.</p>
+      <div class="pillars">
+        <div class="pillar"><strong>Coffee</strong><span>Espresso, matcha, cold coffee and signature drinks.</span></div>
+        <div class="pillar"><strong>Events</strong><span>Workplace catering, pop-ups and private bookings.</span></div>
+        <div class="pillar"><strong>Vintage</strong><span>Clothing, shoes and curated finds from Compound Vintage.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu" data-bg="#f7c548">
+  <div class="wrap">
+    <div class="menu-head">
+      <h2 class="mega rv"><span class="drip">what we're pouring</span><span class="flow">The Menu</span></h2>
+      <div class="rv">
+        <p>Two boards on the truck: <b>The Playlist</b> (our signature drinks, all topped off with cold foam) and <b>The Setlist</b> (classics, non-coffee and breakfast). Tap a track to see it in the cup.</p>
+        <div class="size-pill"><span>Specialty</span><span>M $6.50 / L $7.50</span></div>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Menu boards">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="p-playlist" id="t-playlist">The Playlist</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-setlist" id="t-setlist">The Setlist</button>
+      <button class="tab" id="openPrint" type="button">Printed Menu ↗</button>
+    </div>
+
+    <!-- THE PLAYLIST -->
+    <div class="panel" id="p-playlist" role="tabpanel" aria-labelledby="t-playlist">
+      <div class="playlist-grid">
+        <div class="album rv">
+          <div class="album-top">
+            <div class="album-art" role="img" aria-label="Compound Coffee cover art"></div>
+            <div><h3>The Playlist</h3><p>SPECIALTY DRINKS • 11 TRACKS • MEDIUM $6.50 / LARGE $7.50</p></div>
+          </div>
+          <ol class="tracks" id="tracks">
+            <li><button class="track-row" data-top="#f3e4cc" data-bot="#c49a6c" data-name="LV" data-feat="Vanilla, espresso"><span class="no">01</span><span class="name">LV<span class="feat">feat. vanilla, espresso</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#f1dcb8" data-bot="#b6763a" data-name="Monet" data-feat="Caramel, espresso"><span class="no">02</span><span class="name">Monet<span class="feat">feat. caramel, espresso</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#e8cfae" data-bot="#6f4128" data-name="Take Care" data-feat="Hazelnut, chocolate, espresso"><span class="no">03</span><span class="name">Take Care<span class="feat">feat. hazelnut, chocolate, espresso</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#f5f0dc" data-bot="#8fbf5a" data-name="Ferxxo 151" data-feat="Vanilla creme matcha"><span class="no">04</span><span class="name">Ferxxo 151<span class="feat">feat. vanilla creme matcha</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#fff4e2" data-bot="#d39a5c" data-name="C.R.E.A.M" data-feat="Caramel frappuccino"><span class="no">05</span><span class="name">C.R.E.A.M<span class="feat">feat. caramel frappuccino</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#f4e6d4" data-bot="#5c3a28" data-name="Tragedy" data-feat="Mocha frappuccino"><span class="no">06</span><span class="name">Tragedy<span class="feat">feat. mocha frappuccino</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#f3e5cf" data-bot="#bf9468" data-name="Clouded" data-feat="Vanilla, caramel, chai"><span class="no">07</span><span class="name">Clouded<span class="feat">feat. vanilla, caramel, chai</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#9ccc65" data-bot="#ef7fa8" data-name="Love Galore" data-feat="Strawberry matcha"><span class="no">08</span><span class="name">Love Galore<span class="feat">feat. strawberry matcha</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#fffaf0" data-bot="#e9d6bb" data-name="White Ferrari" data-feat="White chocolate mocha"><span class="no">09</span><span class="name">White Ferrari<span class="feat">feat. white chocolate mocha</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#ead2b2" data-bot="#7e4a2a" data-name="Corso" data-feat="Chocolate, caramel, espresso"><span class="no">10</span><span class="name">Corso<span class="feat">feat. chocolate, caramel, espresso</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+            <li><button class="track-row" data-top="#efe6f6" data-bot="#a68fcf" data-name="Bound 2" data-feat="Vanilla, lavender, espresso"><span class="no">11</span><span class="name">Bound 2<span class="feat">feat. vanilla, lavender, espresso</span></span><span class="price">$6.50 / $7.50<span class="eq"><i></i><i></i><i></i></span></span></button></li>
+          </ol>
+        </div>
+
+        <div class="cup-stage">
+          <svg class="cup" id="cup" viewBox="0 0 200 300" role="img" aria-label="Illustrated Compound iced drink that changes with the selected menu item">
+            <defs>
+              <clipPath id="cupClip"><path d="M34 78 L166 78 L150 286 Q100 294 50 286 Z"/></clipPath>
+              <linearGradient id="shine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".2" stop-color="#fff" stop-opacity=".55"/><stop offset=".32" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            </defs>
+            <!-- straw -->
+            <rect x="112" y="0" width="12" height="150" rx="4" fill="#e8458f" stroke="#121016" stroke-width="4" transform="rotate(10 118 75)"/>
+            <g clip-path="url(#cupClip)">
+              <rect x="20" y="78" width="160" height="220" fill="#fffaf0"/>
+              <rect class="liquid-bot" id="liqBot" x="20" y="150" width="160" height="150" fill="#c49a6c"/>
+              <path class="liquid-top" id="liqTop" d="M20 112 Q60 100 100 114 T180 110 L180 160 Q140 172 100 156 T20 162 Z" fill="#f3e4cc"/>
+              <rect class="foam" id="foam" x="20" y="78" width="160" height="34" fill="#fffaf0"/>
+              <rect class="ice" x="52" y="120" width="34" height="30" rx="6" fill="#fff" fill-opacity=".55" stroke="#fff" stroke-opacity=".8" stroke-width="2"/>
+              <rect class="ice" x="96" y="136" width="30" height="28" rx="6" fill="#fff" fill-opacity=".5" stroke="#fff" stroke-opacity=".8" stroke-width="2"/>
+              <rect class="ice" x="70" y="164" width="30" height="26" rx="6" fill="#fff" fill-opacity=".45" stroke="#fff" stroke-opacity=".8" stroke-width="2"/>
+              <rect x="20" y="78" width="160" height="220" fill="url(#shine)"/>
+            </g>
+            <path d="M34 78 L166 78 L150 286 Q100 294 50 286 Z" fill="none" stroke="#121016" stroke-width="5" stroke-linejoin="round"/>
+            <!-- lid -->
+            <path d="M26 78 Q100 40 174 78 Z" fill="#ffffff" fill-opacity=".55" stroke="#121016" stroke-width="5" stroke-linejoin="round"/>
+            <rect x="20" y="72" width="160" height="12" rx="6" fill="#fffaf0" stroke="#121016" stroke-width="5"/>
+            <!-- sticker -->
+            <g transform="rotate(-6 100 210)">
+              <path d="M44 196 Q60 180 100 186 Q144 178 158 198 Q164 222 140 228 Q100 236 58 230 Q38 222 44 196 Z" fill="#fffaf0" stroke="#121016" stroke-width="3"/>
+              <text x="70" y="196" font-family="Permanent Marker" font-size="11" fill="#4a86e8">the</text>
+              <text x="100" y="220" text-anchor="middle" font-family="Rubik Wet Paint, Permanent Marker" font-size="24" fill="#4a86e8">COMPOUND</text>
+            </g>
+          </svg>
+          <div class="now-playing" aria-live="polite">
+            <small>Now pouring</small>
+            <b id="npName">LV</b>
+            <span id="npFeat">Vanilla, espresso</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE SETLIST -->
+    <div class="panel" id="p-setlist" role="tabpanel" aria-labelledby="t-setlist" hidden>
+      <div class="setlist">
+        <article class="set-card">
+          <h3>Basic Coffee</h3>
+          <div class="row"><span>Americano</span><b>$5</b></div>
+          <div class="row"><span>Cappuccino</span><b>$5</b></div>
+          <div class="row"><span>Macchiato</span><b>$5</b></div>
+          <div class="row"><span>Espresso</span><b>$3</b></div>
+          <div class="row"><span>Latte</span><b>$6</b></div>
+        </article>
+        <article class="set-card">
+          <h3>Cold Coffee</h3>
+          <div class="row"><span>Iced Americano</span><b>$5</b></div>
+          <div class="row"><span>Iced Latte</span><b>$6</b></div>
+          <div class="row"><span>Iced Mocha</span><b>$6</b></div>
+          <div class="row"><span>Cold Brew</span><b>$5</b></div>
+        </article>
+        <article class="set-card">
+          <h3>Non-Coffee</h3>
+          <div class="row"><span>Dakiti</span><b>$6.50 / $7.50</b></div>
+          <div class="row"><span>Off-White</span><b>$6.50 / $7.50</b></div>
+          <div class="row"><span>Starry Night</span><b>$6.50 / $7.50</b></div>
+          <p class="note" style="margin-top:12px">Medium / Large</p>
+        </article>
+        <article class="set-card food">
+          <h3>Breakfast Sandwiches + Pastries</h3>
+          <p class="note">Choice of plain bagel, cheese bagel or croissant.</p>
+          <div>
+            <div class="row"><span>Wham<small>Egg, ham, avocado, tomato, chipotle mayo</small></span><b>$7</b></div>
+            <div class="row"><span>Illmatic<small>Sausage, egg and bacon</small></span><b>$7</b></div>
+            <div class="row"><span>American Gothic<small>Ham, pepperjack, avocado, tomato</small></span><b>$7</b></div>
+            <div class="row"><span>Da Vinci<small>Ham &amp; cheese croissant</small></span><b>$6</b></div>
+          </div>
+          <div>
+            <div class="row"><span>Bagel<small>Cream cheese</small></span><b>$4</b></div>
+            <div class="row"><span>Croissant</span><b>$4</b></div>
+            <div class="row"><span>Strawberry Cheesecake Croissant</span><b>$6</b></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="menu-foot">
+      <a class="btn ink" href="#events">Where's the truck today?</a>
+      <span class="tag">Menu items &amp; prices may change — ask at the window ✌</span>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Printed menu">
+  <button id="lbClose">Close ×</button>
+  <img src="assets/img/menu-print.jpg" alt="The Compound Coffee printed menu with basic coffee, cold coffee, non-coffee, specialty drinks and breakfast items" loading="lazy">
+</div>
+
+<!-- AFTER HOURS FILM -->
+<section class="film" id="film" data-bg="#0b0a1c">
+  <div class="wrap">
+    <div class="film-head">
+      <h2 class="mega rv"><span class="flow">The Compound</span><br><span class="neon">After Hours</span></h2>
+      <p class="rv">Late-night coffee under the Reno lights. Watch the film, then grab a spot — booking for After Hours is open now.</p>
+    </div>
+    <div class="tv rv">
+      <video id="film-video" src="assets/video/after-hours.mp4" poster="assets/video/after-hours-poster.jpg" playsinline muted loop preload="metadata"></video>
+      <div class="tv-ui">
+        <span class="rec">AFTER HOURS</span>
+        <span>
+          <button id="playBtn">Play</button>
+          <button id="soundBtn">Sound off</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY RIDE -->
+<section class="ride" id="gallery" data-bg="#f3a6c8">
+  <div class="ride-pin">
+    <div class="wrap ride-head">
+      <span class="eyebrow">Truck • Drinks • Community</span>
+      <h2 class="mega"><span class="flow">Life on Compound St.</span></h2>
+    </div>
+    <div class="ride-track" id="rideTrack">
+      <figure class="shot wide"><img src="assets/img/truck-lot.jpg" alt="Customer ordering at The Compound truck in a parking lot" loading="lazy"><figcaption>Morning stop ☕</figcaption></figure>
+      <figure class="shot"><img src="assets/img/iced-latte-pour.jpg" alt="Cold foam pouring into a Compound iced latte" loading="lazy"><figcaption>All topped w/ cold foam</figcaption></figure>
+      <figure class="shot"><img src="assets/img/truck-line.jpg" alt="A line of customers waiting at the truck on a sunny day" loading="lazy"><figcaption>The line is the vibe</figcaption></figure>
+      <figure class="shot wide"><img src="assets/img/compound-graffiti.jpg" alt="Close-up of The Compound graffiti lettering on the truck" loading="lazy"><figcaption>Original artwork</figcaption></figure>
+      <figure class="shot"><img src="assets/img/truck-window.jpg" alt="Truck service window with paper-bag character art" loading="lazy"><figcaption>Compound St.</figcaption></figure>
+      <figure class="shot"><img src="assets/img/iced-latte.jpg" alt="Iced latte with The Compound sticker on the cup" loading="lazy"><figcaption>Iced &amp; legendary</figcaption></figure>
+      <figure class="shot"><img src="assets/img/truck-service.jpg" alt="First responders ordering coffee at the truck" loading="lazy"><figcaption>Fueling first responders</figcaption></figure>
+      <figure class="shot"><img src="assets/img/menu-boards.jpg" alt="The Setlist and The Playlist menu boards beside the truck" loading="lazy"><figcaption>The Setlist + The Playlist</figcaption></figure>
+      <figure class="shot"><img src="assets/img/truck-winter.jpg" alt="The truck downtown on a winter morning with customers" loading="lazy"><figcaption>Downtown winter run</figcaption></figure>
+      <figure class="shot"><img src="assets/img/truck-hills.jpg" alt="The truck parked under blue skies by the hills" loading="lazy"><figcaption>Up in the hills</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="events" data-bg="#a9dcea">
+  <div class="wrap">
+    <div class="events-intro">
+      <div class="rv"><span class="eyebrow">Find the Truck</span><h2 class="mega">Upcoming <span class="w">Events</span></h2></div>
+      <p class="rv">Here's where we're pulling up. Striped days are still open — grab one for your office or event. Follow <a href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener"><b>@_thecompoundcoffee</b></a> for last-minute pop-ups and schedule changes.</p>
+    </div>
+    <div class="cal-wrap">
+      <div class="cal rv" id="cal" aria-label="Schedule calendar"></div>
+      <div>
+        <div class="event-list" id="eventList"></div>
+        <div class="event-more">
+          <button class="show-all" id="showAll" type="button">Show the full month</button>
+        </div>
+        <div class="event-more">
+          <a class="btn" href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener">Follow @_thecompoundcoffee</a>
+          <a class="btn cream" href="#book">Book an open date</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS + YELP -->
+<section class="hours" id="hours" data-bg="#17143a">
+  <div class="wrap hours-grid">
+    <div class="rv">
+      <span class="eyebrow" style="color:var(--mustard)">Open Every Day</span>
+      <h2 class="mega"><span class="flow">Hours</span></h2>
+      <div class="status" id="status">Checking…</div>
+      <ul class="hours-table" id="hoursTable">
+        <li data-d="1"><span>Monday</span><span>7:00 AM – 5:00 PM</span></li>
+        <li data-d="2"><span>Tuesday</span><span>7:00 AM – 5:00 PM</span></li>
+        <li data-d="3"><span>Wednesday</span><span>7:00 AM – 5:00 PM</span></li>
+        <li data-d="4"><span>Thursday</span><span>7:00 AM – 5:00 PM</span></li>
+        <li data-d="5"><span>Friday</span><span>7:00 AM – 5:00 PM</span></li>
+        <li data-d="6"><span>Saturday</span><span>7:00 AM – 5:00 PM</span></li>
+        <li data-d="0"><span>Sunday</span><span>7:00 AM – 5:00 PM</span></li>
+      </ul>
+      <p class="hours-note">We're a truck, so the spot moves — check <a href="#events">Find the Truck</a> or our Instagram before heading out.</p>
+    </div>
+    <div class="yelp-card rv">
+      <div>
+        <span class="eyebrow">Reviews</span>
+        <h3 class="mega">Tell Reno<br>what you sipped.</h3>
+        <p>Loved your Love Galore? Had a legendary Illmatic? Read what people are saying or leave us a review on Yelp — it helps the truck more than you know.</p>
+      </div>
+      <div class="btns">
+        <a class="btn ink" href="https://www.yelp.com/biz/compound-coffee-reno" target="_blank" rel="noopener">Read our Yelp reviews</a>
+        <a class="btn cream" href="https://www.yelp.com/writeareview/biz/compound-coffee-reno" target="_blank" rel="noopener">Write a review</a>
+      </div>
+      <svg class="bagmark" aria-hidden="true"><use href="#bag"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- VINTAGE -->
+<section class="vintage" id="vintage" data-bg="#c9935b">
+  <div class="vintage-media" role="img" aria-label="The Compound graffiti lettering on the truck"></div>
+  <div class="vintage-copy rv">
+    <span class="eyebrow">More Than Coffee</span>
+    <h2 class="mega"><span class="flow">Compound</span><br>Vintage</h2>
+    <p>The Compound also has a vintage side featuring clothing, shoes and curated finds. Follow the dedicated vintage page to see current pieces, drops and updates.</p>
+    <p><a class="btn ink" href="https://www.instagram.com/thecompound_vintage/" target="_blank" rel="noopener">Shop @thecompound_vintage</a></p>
+  </div>
+</section>
+
+<!-- BOOK + CONTACT -->
+<section class="book" id="book" data-bg="#fff6e6">
+  <div class="book-hero">
+    <video src="assets/video/night-loop.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+    <div class="inner rv">
+      <span class="eyebrow">Private Events • Workplace Catering • Pop-Ups</span>
+      <h2 class="mega"><span class="drip">bring the</span><span class="flow">Compound</span><br>to you</h2>
+      <p>Company mornings, birthdays, markets, late-night After Hours — we pull up, set up and pour. Book us out through the calendar or send the details below.</p>
+      <a class="btn" href="https://koalendar.com/e/the-compound-coffee" target="_blank" rel="noopener">Open the Booking Calendar</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="book-grid">
+      <aside class="book-info rv">
+        <h3>Book the Truck</h3>
+        <p>Tell us the date, place and headcount and Jaffet will get back to you with availability and a quote.</p>
+        <ul>
+          <li>Workplace coffee catering</li>
+          <li>Private events &amp; celebrations</li>
+          <li>Markets &amp; pop-ups</li>
+          <li>Community collaborations</li>
+        </ul>
+        <a class="btn ink" href="https://koalendar.com/e/the-compound-coffee" target="_blank" rel="noopener">Booking Calendar ↗</a>
+      </aside>
+
+      <form id="bookingForm" class="rv" novalidate>
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="f-date">Event date</label><input id="f-date" name="date" type="date"></div>
+        <div class="field"><label for="f-location">Event location</label><input id="f-location" name="location"></div>
+        <div class="field"><label for="f-guests">Estimated guests</label><input id="f-guests" name="guests" type="number" min="1" inputmode="numeric"></div>
+        <div class="field full"><label for="f-type">What's it for?</label>
+          <select id="f-type" name="type">
+            <option>Workplace Catering</option><option>Private Event</option><option>Market / Pop-Up</option><option>After Hours</option><option>Community Event</option><option>General Question</option><option>Collaboration</option>
+          </select>
+        </div>
+        <div class="field full"><label for="f-details">Tell us about it</label><textarea id="f-details" name="details" placeholder="Times, drinks you're thinking of, anything we should know…"></textarea></div>
+        <div class="field full"><button class="btn" type="submit">Send Inquiry →</button></div>
+        <p class="form-ok" id="formOk">Your email app is opening with everything filled in — just hit send. 🙌</p>
+        <p class="form-note">Sends to thecompound.inc24@gmail.com through your email app.</p>
+      </form>
+    </div>
+
+    <div class="contact" id="contact">
+      <div class="rv">
+        <span class="eyebrow">Founder • Barista • Vintage Seller</span>
+        <h2 class="mega"><span class="flow">Jaffet</span><br><span class="k">Corona</span></h2>
+        <p style="font-size:1.1rem;line-height:1.6;max-width:440px">Questions, catering requests or collaborations? Reach out directly.</p>
+      </div>
+      <dl class="contact-card rv">
+        <div class="c-row"><dt>Phone</dt><dd><a href="tel:+17753543532">(775) 354-3532</a></dd></div>
+        <div class="c-row"><dt>Email</dt><dd><a href="mailto:thecompound.inc24@gmail.com">thecompound.inc24@gmail.com</a></dd></div>
+        <div class="c-row"><dt>Coffee Instagram</dt><dd><a href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener">@_thecompoundcoffee</a></dd></div>
+        <div class="c-row"><dt>TikTok</dt><dd><a href="https://www.tiktok.com/@_thecompoundcoffee" target="_blank" rel="noopener">@_thecompoundcoffee</a></dd></div>
+        <div class="c-row"><dt>Vintage Instagram</dt><dd><a href="https://www.instagram.com/thecompound_vintage/" target="_blank" rel="noopener">@thecompound_vintage</a></dd></div>
+        <div class="c-row"><dt>Reviews</dt><dd><a href="https://www.yelp.com/biz/compound-coffee-reno" target="_blank" rel="noopener">The Compound Coffee on Yelp</a></dd></div>
+        <div class="c-row"><dt>Service</dt><dd>Reno, Nevada • On-site workplace catering available</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot-big" aria-hidden="true">The Compound</div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top"><img src="assets/img/logo-badge.jpg" alt=""><span>The Compound<small>COFFEE • RENO NV</small></span></a>
+        <p style="color:#bdb6d6;line-height:1.6;max-width:320px">Where coffee is subjective. Mobile specialty coffee, catering and vintage culture out of Reno, Nevada.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://www.tiktok.com/@_thecompoundcoffee" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.8 5.8 0 1 0 5 5.7V9.1a7.4 7.4 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.3-1.6Z"/></svg></a>
+          <a href="https://www.yelp.com/biz/compound-coffee-reno" target="_blank" rel="noopener" aria-label="Yelp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.2l7.1-.6z"/></svg></a>
+          <a href="mailto:thecompound.inc24@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#menu">Drinks Menu</a></li>
+          <li><a href="#events">Find the Truck</a></li>
+          <li><a href="#hours">Hours</a></li>
+          <li><a href="#film">After Hours Film</a></li>
+          <li><a href="https://www.yelp.com/biz/compound-coffee-reno" target="_blank" rel="noopener">Yelp Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Book</h5>
+        <ul>
+          <li><a href="https://koalendar.com/e/the-compound-coffee" target="_blank" rel="noopener">Booking Calendar</a></li>
+          <li><a href="#book">Contact Form</a></li>
+          <li><a href="mailto:thecompound.inc24@gmail.com">Email Us</a></li>
+          <li><a href="tel:+17753543532">(775) 354-3532</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Follow</h5>
+        <ul>
+          <li><a href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener">Instagram — Coffee</a></li>
+          <li><a href="https://www.tiktok.com/@_thecompoundcoffee" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/thecompound_vintage/" target="_blank" rel="noopener">Instagram — Vintage</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span id="yr">2026</span> The Compound Coffee • Reno, Nevada</span>
+      <span>Coffee × Culture × Community — Be legendary.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
