@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero } from "@/components/Blocks";
 import { FilmPlayer } from "@/components/FilmPlayer";
@@ -8,14 +10,18 @@ import { Reveal } from "@/components/Reveal";
 import { moreShots, shots } from "@/lib/gallery";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Gallery & After Hours",
-  description: "Photos of The Compound Coffee truck around Reno and the After Hours film — late-night coffee under the Reno lights.",
-};
+  description:
+    "Photos of The Compound Coffee truck around Reno and the After Hours film — late-night coffee under the Reno lights.",
+  path: "/gallery",
+  keywords: ["Reno coffee truck photos", "After Hours Reno"],
+});
 
 export default function GalleryPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Gallery", path: "/gallery" }])} />
       <PageHero eyebrow="Truck • Drinks • Community" title="Compound St." drip="life on" accent="text-green">
         Morning stops, cold-foam pours, winter runs downtown and late nights under the casino lights.
       </PageHero>

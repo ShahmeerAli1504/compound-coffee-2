@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { ContactCard, PageHero } from "@/components/Blocks";
 import { InquiryForm } from "@/components/InquiryForm";
 import { Reveal } from "@/components/Reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Contact",
-  description: "Questions, catering requests or collaborations? Contact The Compound Coffee in Reno, NV — phone, email, Instagram or the contact form.",
-};
+  description:
+    "Contact The Compound Coffee in Reno, NV — call or text (775) 710-1960, email, Instagram, or send a message for catering, collaborations and questions.",
+  path: "/contact",
+  keywords: ["contact The Compound Coffee"],
+});
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Contact", path: "/contact" }])} />
       <PageHero eyebrow="Founder • Barista • Vintage Seller" title="Say Hi" drip="talk to jaffet" accent="text-sky">
         Questions, catering requests or collaborations? Reach out directly — or send a message below and it lands straight in our inbox.
       </PageHero>

@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, faqSchema, pageMeta } from "@/lib/seo";
 import { BookHero } from "@/components/Blocks";
 import { InquiryForm } from "@/components/InquiryForm";
 import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Book the Truck",
   description:
-    "Book The Compound Coffee truck for workplace catering, private events, markets, pop-ups and After Hours in Reno, NV. Send the details and get a quote.",
-};
+    "Book The Compound Coffee truck for workplace catering, private events, markets, pop-ups and After Hours in Reno and Sparks, NV. Send the details and get a quote.",
+  path: "/book",
+  keywords: ["coffee truck catering Reno", "book coffee truck Reno", "event coffee Reno"],
+});
 
 const faqs = [
   {
@@ -23,6 +27,7 @@ const faqs = [
 export default function BookPage() {
   return (
     <div className="bg-cream pb-[120px] text-ink">
+      <JsonLd data={[breadcrumbSchema([{ name: "Book the Truck", path: "/book" }]), faqSchema(faqs)]} />
       <BookHero top />
 
       <div className="wrap">

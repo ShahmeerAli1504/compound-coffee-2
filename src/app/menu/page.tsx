@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, menuSchema, pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import icedLattePour from "@/assets/img/iced-latte-pour.jpg";
@@ -10,15 +12,18 @@ import { Playlist } from "@/components/Playlist";
 import { Reveal } from "@/components/Reveal";
 import { Setlist } from "@/components/Setlist";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Menu",
   description:
-    "The Compound Coffee menu — The Playlist (11 signature drinks topped with cold foam, $7 / $8), The Setlist classics, non-coffee drinks and breakfast sandwiches. Reno, NV.",
-};
+    "The Compound Coffee menu in Reno, NV — The Playlist: 11 signature drinks topped with cold foam ($7 / $8), plus classic espresso, cold brew, non-coffee drinks and breakfast sandwiches.",
+  path: "/menu",
+  keywords: ["coffee menu Reno", "specialty drinks Reno", "breakfast sandwiches Reno"],
+});
 
 export default function MenuPage() {
   return (
     <>
+      <JsonLd data={[breadcrumbSchema([{ name: "Menu", path: "/menu" }]), menuSchema]} />
       <PageHero eyebrow="The Playlist • The Setlist" title="The Menu" drip="what we're pouring">
         Every signature drink is named after a song we love and topped off with cold foam. Classics, non-coffee and breakfast sandwiches round out the board.
       </PageHero>

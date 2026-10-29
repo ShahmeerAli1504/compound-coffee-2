@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Anton, Permanent_Marker, Rubik_Wet_Paint, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
-import { openingHoursSchema } from "@/lib/hours";
+import { JsonLd } from "@/components/JsonLd";
+import { businessSchema, rootOgImage, websiteSchema } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
@@ -19,15 +20,48 @@ export const metadata: Metadata = {
     template: "%s | The Compound Coffee",
   },
   description: site.description,
-  keywords: ["Reno coffee truck", "mobile coffee Reno", "coffee catering Reno", "The Compound Coffee", "specialty coffee Reno NV", "event coffee truck"],
+  applicationName: site.name,
+  authors: [{ name: site.name, url: siteUrl }],
+  creator: site.name,
+  publisher: site.name,
+  category: "food & drink",
+  keywords: [
+    "Reno coffee truck",
+    "coffee truck Reno NV",
+    "mobile coffee Reno",
+    "coffee catering Reno",
+    "Sparks coffee truck",
+    "specialty coffee Reno",
+    "event coffee truck Reno",
+    "The Compound Coffee",
+    "Bagman",
+  ],
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
+  formatDetection: { telephone: true, email: true, address: false },
   openGraph: {
-    title: "The Compound Coffee — Reno, NV",
+    title: "The Compound Coffee — Mobile Coffee Truck in Reno, NV",
     description: "Specialty coffee with a street-art soul. Find the truck, see the menu, book us for your event.",
+    url: "/",
     type: "website",
     siteName: site.name,
     locale: "en_US",
+    images: [rootOgImage],
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Compound Coffee — Mobile Coffee Truck in Reno, NV",
+    description: "Specialty coffee with a street-art soul. Find the truck, see the menu, book us for your event.",
+    images: [rootOgImage.url],
+  },
+  other: {
+    "geo.region": "US-NV",
+    "geo.placename": "Reno",
+  },
 };
 
 export const viewport: Viewport = {
@@ -37,29 +71,11 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "CafeOrCoffeeShop",
-  name: site.name,
-  description: "Mobile specialty coffee truck in Reno, Nevada.",
-  url: siteUrl,
-  telephone: "+1-775-710-1960",
-  email: site.email,
-  image: `${siteUrl}/opengraph-image.jpg`,
-  address: { "@type": "PostalAddress", addressLocality: "Reno", addressRegion: "NV", addressCountry: "US" },
-  areaServed: "Reno, NV",
-  openingHours: openingHoursSchema,
-  founder: site.founder,
-  servesCuisine: "Coffee",
-  priceRange: "$",
-  sameAs: [site.socials.instagram, site.socials.tiktok, site.socials.yelp],
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${anton.variable} ${marker.variable} ${wetPaint.variable} ${grotesk.variable}`}>
       <body>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <JsonLd data={[businessSchema, websiteSchema]} />
         <noscript>
           <style>{`.rv{opacity:1!important;transform:none!important}`}</style>
         </noscript>

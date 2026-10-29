@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import truckService from "@/assets/img/truck-service.jpg";
@@ -9,11 +11,13 @@ import { FlowText } from "@/components/FlowText";
 import { Reveal } from "@/components/Reveal";
 import { Story } from "@/components/Story";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Our Story",
   description:
-    "Meet Bagman, the face of The Compound — a Reno coffee truck born from a love of coffee, streetwear, art and music.",
-};
+    "Meet Bagman, the face of The Compound — a Reno coffee truck born from a love of coffee, streetwear, art and music. Coffee, events and Compound Vintage.",
+  path: "/about",
+  keywords: ["Bagman", "The Compound Reno", "Compound Vintage"],
+});
 
 const values = [
   { n: "01", t: "Coffee is subjective", d: "No gatekeeping. Order it how you like it — we'll make it legendary." },
@@ -25,6 +29,7 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Our Story", path: "/about" }])} />
       <PageHero eyebrow="Coffee × Culture × Community" title="Our Story" drip="where coffee is subjective" accent="text-sky">
         A street-art coffee truck out of Reno, Nevada — built by a barista who wanted coffee to feel like a block party.
       </PageHero>

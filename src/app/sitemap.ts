@@ -1,20 +1,23 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/site-url";
 
+/* Served at /sitemap.xml */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes: [string, number][] = [
-    ["", 1],
-    ["/menu", 0.9],
-    ["/find-us", 0.9],
-    ["/book", 0.8],
-    ["/about", 0.6],
-    ["/gallery", 0.6],
-    ["/contact", 0.6],
+  const lastModified = new Date();
+  const routes: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
+    { path: "", priority: 1, changeFrequency: "weekly" },
+    { path: "/menu", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/find-us", priority: 0.9, changeFrequency: "daily" },
+    { path: "/book", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/about", priority: 0.6, changeFrequency: "monthly" },
+    { path: "/gallery", priority: 0.6, changeFrequency: "monthly" },
+    { path: "/contact", priority: 0.6, changeFrequency: "yearly" },
   ];
-  return routes.map(([path, priority]) => ({
-    url: `${siteUrl}${path}`,
-    lastModified: new Date(),
-    changeFrequency: path === "/find-us" ? "daily" : "monthly",
-    priority,
+  return routes.map((r) => ({
+    url: `${siteUrl}${r.path}`,
+    lastModified,
+    changeFrequency: r.changeFrequency,
+    priority: r.priority,
+    ...(r.path === "" ? { images: [`${siteUrl}/opengraph-image.jpg`] } : {}),
   }));
 }

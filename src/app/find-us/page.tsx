@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 import { HoursSection, PageHero } from "@/components/Blocks";
 import { Reveal } from "@/components/Reveal";
 import { WeekSchedule } from "@/components/WeekSchedule";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Find the Truck",
-  description: "Where The Compound Coffee truck is parked this week in Reno, NV — daily stops, live open/closed hours, and open dates you can book.",
-};
+  description:
+    "Where The Compound Coffee truck is parked this week in Reno and Sparks, NV — daily stops with maps, live open/closed hours, and open dates you can book.",
+  path: "/find-us",
+  keywords: ["coffee truck near me Reno", "Reno coffee truck schedule"],
+});
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export default function FindUsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Find the Truck", path: "/find-us" }])} />
       <PageHero eyebrow="Find the Truck" title="This Week" drip="on the road" accent="text-sky">
         Here&apos;s where we&apos;re pulling up — the schedule updates itself every night at midnight, Reno time. Striped days are still open, so grab one for your office or event.
       </PageHero>
