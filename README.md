@@ -47,7 +47,7 @@ Spam protection: hidden honeypot field, a minimum fill time, and a per-IP rate l
 
 1. Push to GitHub and import the repo in Vercel (framework preset: **Next.js**).
 2. Project → Settings → **Environment Variables**: add the same variables as `.env.local`.
-3. Deploy. Optional: set `NEXT_PUBLIC_SITE_URL` to the custom domain for SEO/sitemap.
+3. Deploy. The live domain is https://www.thecompoundcoffee.net (sitemap: /sitemap.xml). Submit the sitemap in Google Search Console.
 
 ## Updating content
 
