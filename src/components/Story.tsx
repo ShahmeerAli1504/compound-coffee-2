@@ -11,6 +11,15 @@ const pillars = [
   { t: "Vintage", d: "Clothing, shoes and curated finds from Compound Vintage.", s: "shadow-[6px_6px_0_var(--color-purple)]" },
 ];
 
+/* The Compound's bio — Bagman, in their own words. */
+const bio = [
+  "Meet Bagman, the face of The Compound.",
+  "We wanted a character that felt like us. Someone we could get creative with and make part of everything we’re building. Bagman came out of our love for coffee, streetwear, art, and music—the same things that shape The Compound.",
+  "He’s got his own look and a little mystery to him. You’ll see him on our cups, clothing, stickers, and probably a few things we haven’t thought of yet. That’s one of our favorite parts: finding new ways to bring him into what we do.",
+  "And we hope you see a little of yourself in his world, too. Whether you’re working on your own ideas, heading to an early shift, or just pulling up for your usual, there’s a place for you here.",
+  "We’re a family building something we love, and Bagman is part of that family. His story is still coming together, right alongside ours. We’re excited to see where it goes and have you along for it.",
+];
+
 export function Story({ teaser = false }: { teaser?: boolean }) {
   return (
     <section id="story" className="bg-sky pb-[120px] pt-10 text-ink">
@@ -24,7 +33,7 @@ export function Story({ teaser = false }: { teaser?: boolean }) {
           />
           <Image
             src={mural}
-            alt="Truck mural of the paper-bag character pouring milk into a coffee"
+            alt="Bagman, The Compound’s paper-bag character, pouring milk into a coffee"
             sizes="(max-width: 1024px) 52vw, 300px"
             className="absolute bottom-0 right-0 w-[52%] rotate-5 border-[3px] border-ink shadow-[-10px_10px_0_var(--color-hot)]"
           />
@@ -33,16 +42,17 @@ export function Story({ teaser = false }: { teaser?: boolean }) {
           </span>
         </Reveal>
         <Reveal>
-          <span className="eyebrow">The Story</span>
+          <span className="eyebrow">The Face of The Compound</span>
           <h2 className="mega mt-2 text-[clamp(3.4rem,8vw,7.4rem)]">
             <span className="mb-[.12em] block font-drip text-[.72em] text-blue">meet</span>
-            <FlowText text="The Compound" />
+            <FlowText text="Bagman" />
           </h2>
           <div className="copy mt-6 max-w-[620px] [&_p]:text-[1.12rem]">
-            <p>
-              <strong>Jaffet</strong> is the founder, barista and vintage seller behind The Compound Coffee. The concept blends specialty drinks, original artwork, mobile coffee service and vintage culture into one recognizable Reno brand.
-            </p>
-            <p>The truck is built for community. Catch it at local pop-ups or bring The Compound to your office, celebration, market or private event.</p>
+            {(teaser ? bio.slice(0, 3) : bio).map((para, i) => (
+              <p key={i} className={i === 0 ? "font-bold" : undefined}>
+                {para}
+              </p>
+            ))}
           </div>
           <div className="mt-7 grid gap-3.5 sm:grid-cols-3">
             {pillars.map((p) => (
@@ -54,7 +64,7 @@ export function Story({ teaser = false }: { teaser?: boolean }) {
           </div>
           {teaser && (
             <Link href="/about" className="btn btn-ink mt-9">
-              Read the full story
+              Read Bagman’s story
             </Link>
           )}
         </Reveal>

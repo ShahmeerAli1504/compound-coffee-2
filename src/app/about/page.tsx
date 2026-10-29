@@ -12,7 +12,7 @@ import { Story } from "@/components/Story";
 export const metadata: Metadata = {
   title: "Our Story",
   description:
-    "Meet Jaffet and The Compound — a Reno coffee truck blending specialty drinks, original street art, mobile coffee service and vintage culture.",
+    "Meet Bagman, the face of The Compound — a Reno coffee truck born from a love of coffee, streetwear, art and music.",
 };
 
 const values = [
