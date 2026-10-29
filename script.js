@@ -194,9 +194,11 @@
   const status = $('#status');
   const refreshHours = () => {
     const n = renoNow();
-    const mins = n.h * 60 + n.min;
-    const open = mins >= 7 * 60 && mins < 17 * 60;
-    status.textContent = open ? `Open now • until 5:00 PM` : (mins < 7 * 60 ? 'Closed now • opens 7:00 AM' : 'Closed now • opens 7:00 AM tomorrow');
+    // Mon–Fri 7:00 AM–1:00 PM, Sat–Sun 9:00 AM–12:00 PM
+    const HOURS = d => (d === 0 || d === 6) ? { o: 9 * 60, c: 12 * 60, os: '9:00 AM', cs: '12:00 PM' } : { o: 7 * 60, c: 13 * 60, os: '7:00 AM', cs: '1:00 PM' };
+    const mins = n.h * 60 + n.min, h = HOURS(n.dow);
+    const open = mins >= h.o && mins < h.c;
+    status.textContent = open ? `Open now • until ${h.cs}` : (mins < h.o ? `Closed now • opens ${h.os}` : `Closed now • opens ${HOURS((n.dow + 1) % 7).os} tomorrow`);
     status.classList.toggle('closed', !open);
     $$('#hoursTable li').forEach(li => li.classList.toggle('today', +li.dataset.d === n.dow));
   };
