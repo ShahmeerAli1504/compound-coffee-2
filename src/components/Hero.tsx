@@ -17,21 +17,33 @@ export function Hero() {
   const reveal = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
     let raf = 0;
+
+    /* Three beats as you scroll:
+       1. (0–28%)  full "THE COMPOUND" with the truck peeking below → truck rises into place
+       2. (28–70%) truck pushes in, word stretches tall and fades
+       3. (70–100%) "Be Legendary." wipes in                                        */
     const scene = () => {
       raf = 0;
       const h = hero.current, t = truck.current, w = word.current, s = sticker.current, rv = reveal.current;
       if (!h || !t || !w || !s || !rv) return;
       const r = h.getBoundingClientRect();
       if (r.bottom < 0) return;
-      const p = clamp(-r.top / (r.height - innerHeight));
-      const base = innerWidth <= 640 ? -110 : -80;
-      t.style.transform = `translateY(${-p * 6}vh) scale(${1 + p * 0.55})`;
-      w.style.transform = `translate(-50%, ${base - p * 30}%) scaleY(${1 + p * 0.9}) scaleX(${1 - p * 0.08})`;
-      w.style.opacity = String(1 - clamp((p - 0.45) / 0.3));
+      const p = reduce ? 0.28 : clamp(-r.top / (r.height - innerHeight));
+      const a = ease(clamp(p / 0.28));
+      const b = clamp((p - 0.28) / 0.42);
+      const c = reduce ? 0 : clamp((p - 0.7) / 0.3);
+      const mobile = innerWidth <= 640;
+      const start = mobile ? -95 : -72; // word sits above the truck from the first frame
+      const lift = mobile ? 30 : 10;
+
+      w.style.transform = `translate(-50%, ${start - a * lift - b * 30}%) scaleY(${1 + b * 0.9}) scaleX(${1 - b * 0.08})`;
+      w.style.opacity = String(1 - clamp((b - 0.35) / 0.45));
+      t.style.transform = `translateY(${(1 - a) * 30 - b * 6}vh) scale(${0.94 + a * 0.06 + b * 0.55})`;
       s.style.transform = `rotate(${-10 + p * 40}deg) translateY(${p * -30}vh)`;
-      rv.style.clipPath = `circle(${clamp((p - 0.62) / 0.38) * 150}% at 50% 60%)`;
+      rv.style.clipPath = `circle(${c * 150}% at 50% 60%)`;
     };
     const req = () => {
       if (!raf) raf = requestAnimationFrame(scene);
@@ -47,21 +59,21 @@ export function Hero() {
   }, []);
 
   return (
-    <section ref={hero} aria-label="The Compound Coffee truck" className="relative h-[230vh] bg-[#050409] max-sm:h-[190vh]">
+    <section ref={hero} aria-label="The Compound Coffee truck" className="relative h-[300vh] bg-[#050409] max-sm:h-[240vh]">
       <div className="sticky top-0 grid h-screen h-[100svh] place-items-center overflow-hidden">
         <div className="stars absolute inset-0 animate-twinkle opacity-80" />
         <div className="absolute -inset-x-[10%] -bottom-[30%] h-[70%] bg-[radial-gradient(closest-side,rgba(90,63,176,.55),transparent)] blur-[10px]" />
 
         <h1
           ref={word}
-          className="absolute left-1/2 top-1/2 z-[1] m-0 whitespace-nowrap font-display text-[clamp(5rem,23vw,24rem)] uppercase leading-[.8] tracking-[-.02em] text-cream will-change-transform [transform:translate(-50%,-80%)] max-sm:text-[25vw] max-sm:[transform:translate(-50%,-110%)]"
+          className="absolute left-1/2 top-1/2 z-[1] m-0 whitespace-nowrap font-display text-[clamp(5rem,23vw,24rem)] uppercase leading-[.8] tracking-[-.02em] text-cream will-change-transform [transform:translate(-50%,-72%)] max-sm:text-[25vw] max-sm:[transform:translate(-50%,-95%)]"
         >
           <span className="absolute left-[.06em] top-[-.38em] font-marker text-[.22em] tracking-normal text-sky [transform:rotate(-8deg)]">the</span>
           Compound
           <span className="sr-only"> Coffee — mobile coffee truck in Reno, Nevada</span>
         </h1>
 
-        <div ref={truck} className="truck-mask relative z-[2] mt-[12vh] w-[min(1100px,96vw)] will-change-transform max-sm:mt-0 max-sm:w-[150vw]">
+        <div ref={truck} className="truck-mask relative z-[2] mt-[12vh] w-[min(1100px,96vw)] will-change-transform [transform:translateY(30vh)_scale(.94)] max-sm:mt-0 max-sm:w-[150vw]">
           <Image
             src={truckNight}
             alt="The Compound Coffee truck wrapped in street art, parked at night in front of downtown Reno casinos"
