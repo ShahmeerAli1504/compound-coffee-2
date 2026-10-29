@@ -190,18 +190,25 @@
   };
   const now = renoNow();
 
-  /* ---------- hours ---------- */
+  /* ---------- hours (re-checked every minute) ---------- */
   const status = $('#status');
-  const mins = now.h * 60 + now.min;
-  const open = mins >= 7 * 60 && mins < 17 * 60;
-  status.textContent = open ? `Open now • until 5:00 PM` : (mins < 7 * 60 ? 'Closed now • opens 7:00 AM' : 'Closed now • opens 7:00 AM tomorrow');
-  status.classList.toggle('closed', !open);
-  $$('#hoursTable li').forEach(li => li.classList.toggle('today', +li.dataset.d === now.dow));
+  const refreshHours = () => {
+    const n = renoNow();
+    const mins = n.h * 60 + n.min;
+    const open = mins >= 7 * 60 && mins < 17 * 60;
+    status.textContent = open ? `Open now • until 5:00 PM` : (mins < 7 * 60 ? 'Closed now • opens 7:00 AM' : 'Closed now • opens 7:00 AM tomorrow');
+    status.classList.toggle('closed', !open);
+    $$('#hoursTable li').forEach(li => li.classList.toggle('today', +li.dataset.d === n.dow));
+  };
+  refreshHours();
 
-  /* ---------- events (November 2026 schedule) ---------- */
+  /* ---------- schedule: only this week (or today) is shown ----------
+     Add stops under "YYYY-MM" → day of month. The site works out the current
+     week from Reno's date, so it rolls over on its own at midnight — no manual
+     update needed, just keep future stops filled in here.
+     Tip: add ?date=2026-11-03 to the URL to preview any week. */
   const SCHEDULE = {
-    year: 2026, month: 11, label: 'November',
-    days: {
+    '2026-11': {
       1: [{ t: 'All day', n: 'Evergreen Plaza', a: '2300 Oddie Blvd' }],
       2: [{ t: '7:00–8:00 AM', n: 'Renown', a: '1595 Robb Dr #2' }, { t: '8:30–9:30 AM', n: 'Edgewater at Virginia Lake', a: '2490 Eastshore Place' }, { t: '10:00–11:30 AM', n: 'Renown', a: '910 Vista Blvd' }, { t: 'Night', n: 'The Compound After Hours', a: 'Downtown Reno — book via the calendar' }],
       3: [{ t: '6:45–7:45 AM', n: 'Desert Skies Middle School', a: '7550 Donatello Dr' }, { t: '8:30–10:00 AM', n: 'Hopes Clinic', a: '1905 E 4th St' }, { t: '10:30 AM–3:00 PM', n: 'UNR', a: 'University of Nevada, Reno' }],
@@ -220,67 +227,90 @@
       25: [{ t: '7:30–9:00 AM', n: 'Washoe County Sheriff', a: '911 Parr Blvd' }, { t: '9:30–11:00 AM', n: 'Hopes Clinic', a: '580 W 5th St' }]
     }
   };
-  const { year, month, label, days } = SCHEDULE;
-  const daysInMonth = new Date(year, month, 0).getDate();
-  const firstDow = new Date(year, month - 1, 1).getDay();
-  const todayKey = now.y * 10000 + now.m * 100 + now.d;
-  const keyOf = d => year * 10000 + month * 100 + d;
-  const wk = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const longDay = d => new Date(year, month - 1, d).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
-  const iso = d => `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-  const maps = a => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(a + ', Reno, NV')}`;
-
-  // calendar
-  const cal = $('#cal');
-  let html = `<div class="cal-title"><b>${label} ${year}</b><span>on the road</span></div><div class="cal-grid">`;
-  html += wk.map(w => `<div class="cal-dow">${w[0]}${w[1]}</div>`).join('');
-  for (let i = 0; i < firstDow; i++) html += '<div class="day blank"></div>';
-  for (let d = 1; d <= daysInMonth; d++) {
-    const ev = days[d];
-    const past = keyOf(d) < todayKey;
-    const cls = ev ? 'booked' : 'open';
-    const href = ev ? `#day-${d}` : '#book';
-    html += `<a class="day ${cls}${past ? ' past' : ''}" href="${href}" data-day="${d}" aria-label="${longDay(d)}: ${ev ? ev.length + ' stop' + (ev.length > 1 ? 's' : '') : 'open for booking'}">${d}<i>${ev ? ev.length + (ev.length > 1 ? ' stops' : ' stop') : 'open'}</i></a>`;
-  }
-  html += '</div><div class="cal-legend"><span class="l1">Truck booked</span><span class="l2">Open — book it</span></div>';
-  cal.innerHTML = html;
-
-  // list
-  const list = $('#eventList');
-  const upcoming = Object.keys(days).map(Number).filter(d => keyOf(d) >= todayKey).sort((a, b) => a - b);
-  const renderList = (all) => {
-    const show = all ? upcoming : upcoming.slice(0, 5);
-    if (!show.length) {
-      list.innerHTML = `<div class="event-day"><h4>New schedule dropping soon</h4><p>Check <a href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener">@_thecompoundcoffee</a> for this week's stops.</p></div>`;
-      $('#showAll').hidden = true;
-      return;
-    }
-    list.innerHTML = show.map(d => `
-      <article class="event-day" id="day-${d}">
-        <h4>${longDay(d)}</h4>
-        ${days[d].map(s => `<div class="stop"><time>${s.t}</time><div><b>${s.n}</b>${/^\d/.test(s.a) ? `<a href="${maps(s.a)}" target="_blank" rel="noopener">${s.a} ↗</a>` : `<span>${s.a}</span>`}</div></div>`).join('')}
-      </article>`).join('');
-    $('#showAll').hidden = all || upcoming.length <= 5;
+  const DAY = 864e5;
+  const pad = n => String(n).padStart(2, '0');
+  const info = t => {
+    const x = new Date(t), y = x.getUTCFullYear(), m = x.getUTCMonth() + 1, d = x.getUTCDate();
+    return { t, y, m, d, dow: x.getUTCDay(), iso: `${y}-${pad(m)}-${pad(d)}`, stops: (SCHEDULE[`${y}-${pad(m)}`] || {})[d] || null };
   };
-  renderList(false);
-  $('#showAll').addEventListener('click', () => renderList(true));
+  const fmt = (t, o) => new Date(t).toLocaleDateString('en-US', { timeZone: 'UTC', ...o });
+  const testDate = (new URLSearchParams(location.search).get('date') || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const todayT = () => {
+    if (testDate) return Date.UTC(+testDate[1], +testDate[2] - 1, +testDate[3]);
+    const n = renoNow();
+    return Date.UTC(n.y, n.m - 1, n.d);
+  };
+  const maps = a => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(a + ', Reno, NV')}`;
+  const stopsHTML = st => st.map(s => `<div class="stop"><time>${s.t}</time><div><b>${s.n}</b>${/^\d/.test(s.a) ? `<a href="${maps(s.a)}" target="_blank" rel="noopener">${s.a} ↗</a>` : `<span>${s.a}</span>`}</div></div>`).join('');
+  const dayCard = (w, isToday) => `
+      <article class="event-day${isToday ? ' is-today' : ''}" id="day-${w.iso}">
+        <h4>${fmt(w.t, { weekday: 'long', month: 'short', day: 'numeric' })}${isToday ? ' <em>Today</em>' : ''}</h4>
+        ${stopsHTML(w.stops)}
+      </article>`;
+
+  const cal = $('#cal'), list = $('#eventList');
+  const toggles = $$('.view-toggle button');
+  let view = 'week', shownT = null;
+
+  const render = () => {
+    const t0 = todayT();
+    shownT = t0;
+    const start = t0 - info(t0).dow * DAY;
+    const week = [...Array(7)].map((_, i) => info(start + i * DAY));
+
+    // week strip
+    let html = `<div class="cal-title"><b>${fmt(start, { month: 'short', day: 'numeric' })} – ${fmt(week[6].t, { month: 'short', day: 'numeric' })}</b><span>on the road</span></div><div class="cal-grid week">`;
+    html += week.map(w => `<div class="cal-dow">${fmt(w.t, { weekday: 'short' })}</div>`).join('');
+    html += week.map(w => {
+      const past = w.t < t0, isToday = w.t === t0, n = w.stops ? w.stops.length : 0;
+      return `<a class="day ${n ? 'booked' : 'open'}${past ? ' past' : ''}${isToday ? ' today' : ''}" href="${n ? '#day-' + w.iso : '#book'}" data-iso="${w.iso}" aria-label="${fmt(w.t, { weekday: 'long', month: 'short', day: 'numeric' })}${isToday ? ' (today)' : ''}: ${n ? n + ' stop' + (n > 1 ? 's' : '') : 'open for booking'}">${w.d}<i>${n ? n + (n > 1 ? ' stops' : ' stop') : 'open'}</i></a>`;
+    }).join('');
+    html += '</div><div class="cal-legend"><span class="l1">Truck booked</span><span class="l2">Open — book it</span><span class="l3">Today</span></div>';
+    cal.innerHTML = html;
+
+    // list
+    const tw = week.find(w => w.t === t0);
+    if (view === 'today') {
+      list.innerHTML = tw.stops ? dayCard(tw, true) : `
+        <div class="event-day is-today"><h4>${fmt(t0, { weekday: 'long', month: 'short', day: 'numeric' })} <em>Today</em></h4>
+        <p>No public stops on the schedule today. Check <a href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener">@_thecompoundcoffee</a> for pop-ups — or <a href="#book">book the truck</a>.</p></div>`;
+    } else {
+      const ahead = week.filter(w => w.t >= t0 && w.stops);
+      list.innerHTML = ahead.length ? ahead.map(w => dayCard(w, w.t === t0)).join('') : `
+        <div class="event-day"><h4>New schedule dropping soon</h4><p>No more stops posted for this week yet. Check <a href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener">@_thecompoundcoffee</a> for this week's stops.</p></div>`;
+    }
+  };
+
+  const setView = v => {
+    view = v;
+    toggles.forEach(b => b.setAttribute('aria-selected', b.dataset.view === v));
+    render();
+  };
+  toggles.forEach(b => b.addEventListener('click', () => setView(b.dataset.view)));
+  render();
 
   cal.addEventListener('click', e => {
     const a = e.target.closest('.day');
     if (!a) return;
-    const d = +a.dataset.day;
+    const iso = a.dataset.iso;
     if (a.classList.contains('open')) {
-      $('#f-date').value = iso(d);
+      $('#f-date').value = iso;
       $('#f-type').value = 'Private Event';
       return; // default anchor → #book
     }
     e.preventDefault();
-    if (!$('#day-' + d)) renderList(true);
-    const card = $('#day-' + d);
+    if (!$('#day-' + iso)) setView('week');
+    const card = $('#day-' + iso);
+    if (!card) return;
     card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     card.classList.add('flash');
     setTimeout(() => card.classList.remove('flash'), 1600);
   });
+
+  // roll over at midnight (Reno time) even if the page stays open
+  const tick = () => { refreshHours(); if (todayT() !== shownT) render(); };
+  setInterval(tick, 60000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
 
   /* ---------- booking form → email ---------- */
   $('#bookingForm').addEventListener('submit', e => {
@@ -289,7 +319,7 @@
     const name = el('name').value.trim(), email = el('email').value.trim();
     if (!name || !/^\S+@\S+\.\S+$/.test(email)) {
       const bad = !name ? el('name') : el('email');
-      bad.focus(); bad.style.boxShadow = '5px 5px 0 #e8458f';
+      bad.focus(); bad.style.boxShadow = '5px 5px 0 #9e1b34';
       return;
     }
     const v = k => el(k).value.trim() || '—';

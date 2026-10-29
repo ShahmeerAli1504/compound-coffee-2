@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Rubik+Wet+Paint&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"The Compound Coffee","description":"Mobile specialty coffee truck in Reno, Nevada.","telephone":"+1-775-354-3532","email":"thecompound.inc24@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Reno","addressRegion":"NV","addressCountry":"US"},"openingHours":"Mo-Su 07:00-17:00","founder":"Jaffet Corona","sameAs":["https://www.instagram.com/_thecompoundcoffee/","https://www.tiktok.com/@_thecompoundcoffee","https://www.yelp.com/biz/compound-coffee-reno"]}
+  {"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"The Compound Coffee","description":"Mobile specialty coffee truck in Reno, Nevada.","telephone":"+1-775-354-3532","email":"thecompound.inc24@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Reno","addressRegion":"NV","addressCountry":"US"},"openingHours":"Mo-Su 07:00-17:00","founder":"Jaffet","sameAs":["https://www.instagram.com/_thecompoundcoffee/","https://www.tiktok.com/@_thecompoundcoffee","https://www.yelp.com/biz/compound-coffee-reno"]}
   </script>
 </head>
 <body>
@@ -105,7 +105,7 @@
     <div class="rv">
       <span class="eyebrow">The Story</span>
       <h2 class="mega"><span class="drip">meet</span><span class="flow">The Compound</span></h2>
-      <p><strong>Jaffet Corona</strong> is the founder, barista and vintage seller behind The Compound Coffee. The concept blends specialty drinks, original artwork, mobile coffee service and vintage culture into one recognizable Reno brand.</p>
+      <p><strong>Jaffet</strong> is the founder, barista and vintage seller behind The Compound Coffee. The concept blends specialty drinks, original artwork, mobile coffee service and vintage culture into one recognizable Reno brand.</p>
       <p>The truck is built for community. Catch it at local pop-ups or bring The Compound to your office, celebration, market or private event.</p>
       <div class="pillars">
         <div class="pillar"><strong>Coffee</strong><span>Espresso, matcha, cold coffee and signature drinks.</span></div>
@@ -163,7 +163,7 @@
               <linearGradient id="shine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".2" stop-color="#fff" stop-opacity=".55"/><stop offset=".32" stop-color="#fff" stop-opacity="0"/></linearGradient>
             </defs>
             <!-- straw -->
-            <rect x="112" y="0" width="12" height="150" rx="4" fill="#e8458f" stroke="#121016" stroke-width="4" transform="rotate(10 118 75)"/>
+            <rect x="112" y="0" width="12" height="150" rx="4" fill="#9e1b34" stroke="#121016" stroke-width="4" transform="rotate(10 118 75)"/>
             <g clip-path="url(#cupClip)">
               <rect x="20" y="78" width="160" height="220" fill="#fffaf0"/>
               <rect class="liquid-bot" id="liqBot" x="20" y="150" width="160" height="150" fill="#c49a6c"/>
@@ -270,7 +270,7 @@
 </section>
 
 <!-- GALLERY RIDE -->
-<section class="ride" id="gallery" data-bg="#f3a6c8">
+<section class="ride" id="gallery" data-bg="#14533f">
   <div class="ride-pin">
     <div class="wrap ride-head">
       <span class="eyebrow">Truck • Drinks • Community</span>
@@ -295,16 +295,17 @@
 <section class="events" id="events" data-bg="#a9dcea">
   <div class="wrap">
     <div class="events-intro">
-      <div class="rv"><span class="eyebrow">Find the Truck</span><h2 class="mega">Upcoming <span class="w">Events</span></h2></div>
-      <p class="rv">Here's where we're pulling up. Striped days are still open — grab one for your office or event. Follow <a href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener"><b>@_thecompoundcoffee</b></a> for last-minute pop-ups and schedule changes.</p>
+      <div class="rv"><span class="eyebrow">Find the Truck</span><h2 class="mega">This <span class="w">Week</span></h2></div>
+      <p class="rv">Here's where we're pulling up this week — the schedule updates itself every night at midnight. Striped days are still open, so grab one for your office or event. Follow <a href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener"><b>@_thecompoundcoffee</b></a> for last-minute pop-ups and changes.</p>
     </div>
     <div class="cal-wrap">
-      <div class="cal rv" id="cal" aria-label="Schedule calendar"></div>
+      <div class="cal rv" id="cal" aria-label="This week's schedule"></div>
       <div>
-        <div class="event-list" id="eventList"></div>
-        <div class="event-more">
-          <button class="show-all" id="showAll" type="button">Show the full month</button>
+        <div class="view-toggle" role="tablist" aria-label="Schedule view">
+          <button type="button" role="tab" data-view="week" aria-selected="true">This week</button>
+          <button type="button" role="tab" data-view="today" aria-selected="false">Today</button>
         </div>
+        <div class="event-list" id="eventList" aria-live="polite"></div>
         <div class="event-more">
           <a class="btn" href="https://www.instagram.com/_thecompoundcoffee/" target="_blank" rel="noopener">Follow @_thecompoundcoffee</a>
           <a class="btn cream" href="#book">Book an open date</a>
@@ -406,7 +407,7 @@
     <div class="contact" id="contact">
       <div class="rv">
         <span class="eyebrow">Founder • Barista • Vintage Seller</span>
-        <h2 class="mega"><span class="flow">Jaffet</span><br><span class="k">Corona</span></h2>
+        <h2 class="mega"><span class="flow">Jaffet</span></h2>
         <p style="font-size:1.1rem;line-height:1.6;max-width:440px">Questions, catering requests or collaborations? Reach out directly.</p>
       </div>
       <dl class="contact-card rv">
