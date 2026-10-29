@@ -4,17 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import logo from "@/assets/img/logo-badge.jpg";
+import wordmark from "@/assets/img/compound-wordmark.png";
 import { nav } from "@/lib/site";
 
 export function Brand({ onClick }: { onClick?: () => void }) {
   return (
-    <Link href="/" onClick={onClick} className="flex items-center gap-2.5 text-cream no-underline" aria-label="The Compound Coffee home">
-      <Image src={logo} alt="" width={46} height={46} className="size-[46px] rounded-full border-2 border-cream object-cover" />
-      <span className="font-marker text-[1.1rem] leading-none">
-        The Compound
-        <small className="block font-sans text-[.62rem] tracking-[.2em] opacity-70">COFFEE • RENO NV</small>
-      </span>
+    <Link href="/" onClick={onClick} className="flex items-center no-underline" aria-label="The Compound Coffee home">
+      <Image src={wordmark} alt="The Compound" sizes="140px" className="h-[52px] w-auto -rotate-2" priority />
     </Link>
   );
 }

@@ -26,7 +26,7 @@ export function Hero() {
       const r = h.getBoundingClientRect();
       if (r.bottom < 0) return;
       const p = clamp(-r.top / (r.height - innerHeight));
-      const base = innerWidth <= 640 ? -110 : -62;
+      const base = innerWidth <= 640 ? -110 : -80;
       t.style.transform = `translateY(${-p * 6}vh) scale(${1 + p * 0.55})`;
       w.style.transform = `translate(-50%, ${base - p * 30}%) scaleY(${1 + p * 0.9}) scaleX(${1 - p * 0.08})`;
       w.style.opacity = String(1 - clamp((p - 0.45) / 0.3));
@@ -54,7 +54,7 @@ export function Hero() {
 
         <h1
           ref={word}
-          className="absolute left-1/2 top-1/2 z-[1] m-0 whitespace-nowrap font-display text-[clamp(5rem,23vw,24rem)] uppercase leading-[.8] tracking-[-.02em] text-cream will-change-transform [transform:translate(-50%,-62%)] max-sm:text-[25vw] max-sm:[transform:translate(-50%,-110%)]"
+          className="absolute left-1/2 top-1/2 z-[1] m-0 whitespace-nowrap font-display text-[clamp(5rem,23vw,24rem)] uppercase leading-[.8] tracking-[-.02em] text-cream will-change-transform [transform:translate(-50%,-80%)] max-sm:text-[25vw] max-sm:[transform:translate(-50%,-110%)]"
         >
           <span className="absolute left-[.06em] top-[-.38em] font-marker text-[.22em] tracking-normal text-sky [transform:rotate(-8deg)]">the</span>
           Compound
