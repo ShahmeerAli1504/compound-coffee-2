@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { parseIsoDay, weekOf, type Day, type Stop } from "@/lib/schedule";
+import { dayInfo, parseIsoDay, type Day, type Stop } from "@/lib/schedule";
 import { mapsLink, site } from "@/lib/site";
-import { dayStamp, fmtDay, renoNow } from "@/lib/time";
+import { DAY_MS, dayStamp, fmtDay, renoNow } from "@/lib/time";
 
 const todayStamp = () => {
   const preview = typeof window !== "undefined" ? parseIsoDay(new URLSearchParams(location.search).get("date")) : null;
@@ -38,6 +38,22 @@ function Stops({ stops }: { stops: Stop[] }) {
 }
 
 function DayCard({ day, today, flash }: { day: Day; today: boolean; flash: boolean }) {
+  const tag = today ? <TodayTag /> : <TomorrowTag />;
+  if (!day.stops) {
+    return (
+      <Empty id={`day-${day.iso}`} title={<>{longDay(day.t)} {tag}</>}>
+        No public stops posted {today ? "today" : "for tomorrow"} yet. Check{" "}
+        <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="font-bold underline">
+          {site.socials.instagramHandle}
+        </a>{" "}
+        for pop-ups — or{" "}
+        <Link href={`/book?date=${day.iso}&type=Private%20Event#inquiry`} className="font-bold underline">
+          book the truck
+        </Link>
+        .
+      </Empty>
+    );
+  }
   return (
     <article
       id={`day-${day.iso}`}
@@ -47,7 +63,7 @@ function DayCard({ day, today, flash }: { day: Day; today: boolean; flash: boole
     >
       <h3 className="m-0 mb-2.5 font-marker text-[1.25rem] font-normal uppercase tracking-[.02em] text-kraft-dark">
         {longDay(day.t)}
-        {today && <TodayTag />}
+        {tag}
       </h3>
       {day.stops ? <Stops stops={day.stops} /> : null}
     </article>
@@ -58,10 +74,14 @@ const TodayTag = () => (
   <em className="ml-2 bg-hot px-2 py-[3px] align-[3px] font-sans text-[.7rem] font-extrabold not-italic tracking-[.14em] text-cream">TODAY</em>
 );
 
-/* This week's stops. Rolls over at midnight Reno time, no edits needed. */
+const TomorrowTag = () => (
+  <em className="ml-2 bg-ink px-2 py-[3px] align-[3px] font-sans text-[.7rem] font-extrabold not-italic tracking-[.14em] text-mustard">TOMORROW</em>
+);
+
+/* Only today + tomorrow are shown; the rest of the week stays hidden.
+   Rolls over at midnight Reno time, no edits needed. */
 export function WeekSchedule() {
   const [today, setToday] = useState<number | null>(null);
-  const [view, setView] = useState<"week" | "today">("week");
   const [flash, setFlash] = useState<string | null>(null);
 
   useEffect(() => {
@@ -77,15 +97,12 @@ export function WeekSchedule() {
   }, []);
 
   if (today === null) {
-    return <div className="grid min-h-[320px] place-items-center border-[3px] border-ink bg-cream font-marker text-xl text-kraft-dark">Loading this week…</div>;
+    return <div className="grid min-h-[320px] place-items-center border-[3px] border-ink bg-cream font-marker text-xl text-kraft-dark">Loading the schedule…</div>;
   }
 
-  const week = weekOf(today);
-  const tw = week.find((w) => w.t === today)!;
-  const ahead = week.filter((w) => w.t >= today && w.stops);
+  const days = [dayInfo(today), dayInfo(today + DAY_MS)];
 
   const jump = (iso: string) => {
-    if (view === "today" && iso !== tw.iso) setView("week");
     requestAnimationFrame(() => {
       const card = document.getElementById(`day-${iso}`);
       if (!card) return;
@@ -97,30 +114,30 @@ export function WeekSchedule() {
 
   return (
     <div className="grid items-start gap-10 lg:grid-cols-[.95fr_1.05fr]">
-      {/* week strip */}
-      <div className="border-[3px] border-ink bg-cream p-3.5 text-ink shadow-[10px_10px_0_var(--color-kraft)] sm:p-5 lg:sticky lg:top-[100px]" aria-label="This week's schedule">
+      {/* today + tomorrow strip */}
+      <div className="border-[3px] border-ink bg-cream p-3.5 text-ink shadow-[10px_10px_0_var(--color-kraft)] sm:p-5 lg:sticky lg:top-[100px]" aria-label="Today and tomorrow's schedule">
         <div className="mb-3.5 flex items-baseline justify-between">
           <b className="font-display text-[2.4rem] font-normal tracking-[.03em]">
-            {fmtDay(week[0].t, { month: "short", day: "numeric" })} – {fmtDay(week[6].t, { month: "short", day: "numeric" })}
+            {fmtDay(days[0].t, { month: "short", day: "numeric" })} – {fmtDay(days[1].t, { month: "short", day: "numeric" })}
           </b>
           <span className="font-marker text-kraft-dark">on the road</span>
         </div>
-        <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
-          {week.map((w) => (
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
+          {days.map((w, i) => (
             <div key={"h" + w.iso} className="pb-1 text-center text-[.68rem] font-extrabold tracking-[.12em] opacity-60">
-              {fmtDay(w.t, { weekday: "short" })}
+              {i ? "TOMORROW" : "TODAY"} · {fmtDay(w.t, { weekday: "short" }).toUpperCase()}
             </div>
           ))}
-          {week.map((w) => {
-            const past = w.t < today, isToday = w.t === today, n = w.stops?.length ?? 0;
-            const label = `${longDay(w.t)}${isToday ? " (today)" : ""}: ${n ? `${n} stop${n > 1 ? "s" : ""}` : "open for booking"}`;
-            const cls = `flex min-h-[70px] flex-col justify-between border-2 border-ink px-1 py-[3px] text-base font-extrabold text-ink no-underline transition-transform hover:-translate-y-[3px] sm:min-h-[92px] sm:px-1.5 sm:py-[5px] sm:text-[1.3rem] ${
+          {days.map((w, i) => {
+            const isToday = i === 0, n = w.stops?.length ?? 0;
+            const label = `${longDay(w.t)} (${isToday ? "today" : "tomorrow"}): ${n ? `${n} stop${n > 1 ? "s" : ""}` : "open for booking"}`;
+            const cls = `flex min-h-[92px] flex-col justify-between border-2 border-ink px-2 py-[5px] text-[1.6rem] font-extrabold text-ink no-underline transition-transform hover:-translate-y-[3px] sm:min-h-[120px] sm:px-3 sm:py-2 sm:text-[2rem] ${
               n ? "bg-ink text-mustard" : "striped-open"
-            } ${past ? "pointer-events-none opacity-30" : ""} ${isToday ? "outline-[3px] outline-offset-2 outline-hot" : ""}`;
+            } ${isToday ? "outline-[3px] outline-offset-2 outline-hot" : ""}`;
             const inner = (
               <>
                 {w.d}
-                <i className={`text-[.48rem] font-extrabold uppercase not-italic leading-none tracking-[.06em] sm:text-[.6rem] ${n ? "" : "text-kraft-dark"}`}>
+                <i className={`text-[.6rem] font-extrabold uppercase not-italic leading-none tracking-[.06em] sm:text-[.72rem] ${n ? "" : "text-kraft-dark"}`}>
                   {n ? `${n} ${n > 1 ? "stops" : "stop"}` : "open"}
                 </i>
               </>
@@ -130,7 +147,7 @@ export function WeekSchedule() {
                 {inner}
               </button>
             ) : (
-              <Link key={w.iso} href={`/book?date=${w.iso}&type=Private%20Event#inquiry`} aria-label={label} className={cls} tabIndex={past ? -1 : undefined}>
+              <Link key={w.iso} href={`/book?date=${w.iso}&type=Private%20Event#inquiry`} aria-label={label} className={cls}>
                 {inner}
               </Link>
             );
@@ -145,51 +162,10 @@ export function WeekSchedule() {
 
       {/* list */}
       <div>
-        <div role="tablist" aria-label="Schedule view" className="mb-4 inline-flex border-[3px] border-ink bg-cream shadow-hard-xs">
-          {(["week", "today"] as const).map((v, i) => (
-            <button
-              key={v}
-              type="button"
-              role="tab"
-              aria-selected={view === v}
-              onClick={() => setView(v)}
-              className={`px-[18px] py-2.5 text-[.8rem] font-extrabold uppercase tracking-[.06em] ${i ? "border-l-[3px] border-ink" : ""} ${
-                view === v ? "bg-ink text-mustard" : "text-ink"
-              }`}
-            >
-              {v === "week" ? "This week" : "Today"}
-            </button>
-          ))}
-        </div>
-
         <div className="grid gap-4" aria-live="polite">
-          {view === "today" ? (
-            tw.stops ? (
-              <DayCard day={tw} today flash={flash === tw.iso} />
-            ) : (
-              <Empty title={<>{longDay(today)} <TodayTag /></>}>
-                No public stops on the schedule today. Check{" "}
-                <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="font-bold underline">
-                  {site.socials.instagramHandle}
-                </a>{" "}
-                for pop-ups — or{" "}
-                <Link href="/book" className="font-bold underline">
-                  book the truck
-                </Link>
-                .
-              </Empty>
-            )
-          ) : ahead.length ? (
-            ahead.map((w) => <DayCard key={w.iso} day={w} today={w.t === today} flash={flash === w.iso} />)
-          ) : (
-            <Empty title="New schedule dropping soon">
-              No more stops posted for this week yet. Check{" "}
-              <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="font-bold underline">
-                {site.socials.instagramHandle}
-              </a>{" "}
-              for this week&apos;s stops — or grab an open day for your office or event.
-            </Empty>
-          )}
+          {days.map((w, i) => (
+            <DayCard key={w.iso} day={w} today={i === 0} flash={flash === w.iso} />
+          ))}
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3.5">
@@ -214,9 +190,9 @@ function Legend({ swatch, children }: { swatch: string; children: React.ReactNod
   );
 }
 
-function Empty({ title, children }: { title: React.ReactNode; children: React.ReactNode }) {
+function Empty({ id, title, children }: { id?: string; title: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="border-[3px] border-ink bg-cream px-6 py-5 text-ink shadow-[6px_6px_0_var(--color-hot)]">
+    <div id={id} className="scroll-mt-[110px] border-[3px] border-ink bg-cream px-6 py-5 text-ink shadow-[6px_6px_0_var(--color-hot)]">
       <h3 className="m-0 mb-2.5 font-marker text-[1.25rem] font-normal uppercase text-kraft-dark">{title}</h3>
       <p className="m-0 leading-relaxed">{children}</p>
     </div>
