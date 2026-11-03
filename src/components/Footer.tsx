@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Brand } from "./Nav";
 import { SocialIcons } from "./SocialIcons";
@@ -49,6 +50,18 @@ export function Footer() {
             © <Year /> The Compound Coffee • Reno, Nevada
           </span>
           <span>Coffee × Culture × Community — Be legendary.</span>
+        </div>
+        <div className="mt-6 flex justify-center">
+          <a
+            href="https://www.nexoradigital.live/"
+            {...ext}
+            aria-label="Powered by NEXORA Digital"
+            className="inline-flex items-center gap-2 text-[.78rem] text-[#9b95bd] no-underline transition-colors hover:text-cream"
+          >
+            <span>Powered by</span>
+            <Image src="/nexora-logo.png" alt="" width={18} height={18} className="h-[18px] w-auto" />
+            <span className="font-bold tracking-[.06em] text-cream">NEXORA Digital</span>
+          </a>
         </div>
       </div>
     </footer>
