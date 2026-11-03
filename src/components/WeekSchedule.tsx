@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { dayInfo, parseIsoDay, type Day, type Stop } from "@/lib/schedule";
 import { mapsLink, site } from "@/lib/site";
-import { DAY_MS, dayStamp, fmtDay, renoNow } from "@/lib/time";
+import { dayStamp, fmtDay, renoNow } from "@/lib/time";
 
 const todayStamp = () => {
   const preview = typeof window !== "undefined" ? parseIsoDay(new URLSearchParams(location.search).get("date")) : null;
@@ -78,7 +78,7 @@ const TomorrowTag = () => (
   <em className="ml-2 bg-ink px-2 py-[3px] align-[3px] font-sans text-[.7rem] font-extrabold not-italic tracking-[.14em] text-mustard">TOMORROW</em>
 );
 
-/* Only today + tomorrow are shown; the rest of the week stays hidden.
+/* Only today is shown; the rest of the week stays hidden.
    Rolls over at midnight Reno time, no edits needed. */
 export function WeekSchedule() {
   const [today, setToday] = useState<number | null>(null);
@@ -100,7 +100,7 @@ export function WeekSchedule() {
     return <div className="grid min-h-[320px] place-items-center border-[3px] border-ink bg-cream font-marker text-xl text-kraft-dark">Loading the schedule…</div>;
   }
 
-  const days = [dayInfo(today), dayInfo(today + DAY_MS)];
+  const days = [dayInfo(today)];
 
   const jump = (iso: string) => {
     requestAnimationFrame(() => {
@@ -114,23 +114,23 @@ export function WeekSchedule() {
 
   return (
     <div className="grid items-start gap-10 lg:grid-cols-[.95fr_1.05fr]">
-      {/* today + tomorrow strip */}
-      <div className="border-[3px] border-ink bg-cream p-3.5 text-ink shadow-[10px_10px_0_var(--color-kraft)] sm:p-5 lg:sticky lg:top-[100px]" aria-label="Today and tomorrow's schedule">
+      {/* today tile */}
+      <div className="border-[3px] border-ink bg-cream p-3.5 text-ink shadow-[10px_10px_0_var(--color-kraft)] sm:p-5 lg:sticky lg:top-[100px]" aria-label="Today's schedule">
         <div className="mb-3.5 flex items-baseline justify-between">
           <b className="font-display text-[2.4rem] font-normal tracking-[.03em]">
-            {fmtDay(days[0].t, { month: "short", day: "numeric" })} – {fmtDay(days[1].t, { month: "short", day: "numeric" })}
+            {fmtDay(days[0].t, { weekday: "short", month: "short", day: "numeric" })}
           </b>
           <span className="font-marker text-kraft-dark">on the road</span>
         </div>
-        <div className="grid grid-cols-2 gap-2 sm:gap-3">
-          {days.map((w, i) => (
+        <div className="grid grid-cols-1 gap-2 sm:gap-3">
+          {days.map((w) => (
             <div key={"h" + w.iso} className="pb-1 text-center text-[.68rem] font-extrabold tracking-[.12em] opacity-60">
-              {i ? "TOMORROW" : "TODAY"} · {fmtDay(w.t, { weekday: "short" }).toUpperCase()}
+              TODAY · {fmtDay(w.t, { weekday: "long" }).toUpperCase()}
             </div>
           ))}
-          {days.map((w, i) => {
-            const isToday = i === 0, n = w.stops?.length ?? 0;
-            const label = `${longDay(w.t)} (${isToday ? "today" : "tomorrow"}): ${n ? `${n} stop${n > 1 ? "s" : ""}` : "open for booking"}`;
+          {days.map((w) => {
+            const isToday = true, n = w.stops?.length ?? 0;
+            const label = `${longDay(w.t)} (today): ${n ? `${n} stop${n > 1 ? "s" : ""}` : "open for booking"}`;
             const cls = `flex min-h-[92px] flex-col justify-between border-2 border-ink px-2 py-[5px] text-[1.6rem] font-extrabold text-ink no-underline transition-transform hover:-translate-y-[3px] sm:min-h-[120px] sm:px-3 sm:py-2 sm:text-[2rem] ${
               n ? "bg-ink text-mustard" : "striped-open"
             } ${isToday ? "outline-[3px] outline-offset-2 outline-hot" : ""}`;
@@ -156,7 +156,6 @@ export function WeekSchedule() {
         <div className="mt-3.5 flex flex-wrap gap-4 text-[.78rem] font-bold">
           <Legend swatch="bg-ink">Truck booked</Legend>
           <Legend swatch="bg-[#fdeccb]">Open — book it</Legend>
-          <Legend swatch="bg-white outline-[3px] outline-offset-1 outline-hot">Today</Legend>
         </div>
       </div>
 
