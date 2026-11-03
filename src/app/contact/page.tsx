@@ -17,15 +17,25 @@ export const metadata: Metadata = pageMeta({
 export default function ContactPage() {
   return (
     <>
-      <JsonLd data={breadcrumbSchema([{ name: "Contact", path: "/contact" }])} />
-      <PageHero eyebrow="Founder • Barista • Vintage Seller" title="Say Hi" drip="talk to jaffet" accent="text-sky">
-        Questions, catering requests or collaborations? Reach out directly — or send a message below and it lands straight in our inbox.
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Contact", path: "/contact" }])}
+      />
+      <PageHero
+        eyebrow="Founder • Barista • Vintage Seller"
+        title="Say Hi"
+        drip="talk to BAGMAN"
+        accent="text-sky"
+      >
+        Questions, catering requests or collaborations? Reach out directly — or
+        send a message below and it lands straight in our inbox.
       </PageHero>
 
       <section className="bg-cream py-[110px] text-ink">
         <div className="wrap grid items-start gap-[46px] lg:grid-cols-2">
           <Reveal>
-            <h2 className="m-0 mb-6 font-display text-[2.6rem] font-normal uppercase leading-none tracking-[.02em]">Send a message</h2>
+            <h2 className="m-0 mb-6 font-display text-[2.6rem] font-normal uppercase leading-none tracking-[.02em]">
+              Send a message
+            </h2>
             <InquiryForm kind="contact" />
             <p className="mt-6 text-[.95rem]">
               Booking the truck for an event?{" "}
@@ -36,7 +46,9 @@ export default function ContactPage() {
             </p>
           </Reveal>
           <Reveal>
-            <h2 className="m-0 mb-6 font-display text-[2.6rem] font-normal uppercase leading-none tracking-[.02em]">Reach us directly</h2>
+            <h2 className="m-0 mb-6 font-display text-[2.6rem] font-normal uppercase leading-none tracking-[.02em]">
+              Reach us directly
+            </h2>
             <ContactCard />
           </Reveal>
         </div>
