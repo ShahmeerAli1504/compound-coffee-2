@@ -68,7 +68,7 @@ export function YelpCard() {
           what you sipped.
         </h3>
         <p className="mt-4 max-w-[420px] text-[1.05rem] leading-relaxed">
-          Loved your Love Galore? Had a legendary Illmatic? Read what people are saying or leave us a review on Yelp — it helps the truck more than you know.
+          tell people how it was. leave a review or see what everyone’s saying. every bit of support helps us keep compound going.
         </p>
       </div>
       <div className="relative z-[1] flex flex-wrap gap-3">

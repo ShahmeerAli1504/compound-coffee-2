@@ -63,7 +63,6 @@ export const businessSchema = {
   ],
   hasMenu: abs("/menu"),
   acceptsReservations: true,
-  founder: { "@type": "Person", name: site.founder },
   sameAs: [site.socials.instagram, site.socials.tiktok, site.socials.yelp, site.socials.vintage],
 };
 

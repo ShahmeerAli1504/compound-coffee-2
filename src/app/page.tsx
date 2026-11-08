@@ -70,24 +70,32 @@ export default function Home() {
         </div>
       </section>
 
-      <GalleryRide />
+      {/* <GalleryRide /> */}
 
-      {/* THIS WEEK */}
+      {/* TODAY'S SCHEDULE */}
       <section id="events" className="bg-sky py-[120px] text-ink">
         <div className="wrap">
-          <div className="mb-10 flex flex-wrap items-end justify-between gap-[30px]">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-[30px]">
             <Reveal>
-              <span className="eyebrow">Find the Truck</span>
-              <h2 className="mega mt-2 text-[clamp(3.6rem,11vw,9.4rem)]">
-                This <span className="outline-ink">Week</span>
+              <div className="flex items-center gap-2">
+                <span className="inline-block size-3 rounded-full bg-hot animate-ping" />
+                <span className="eyebrow text-ink">Find the Truck</span>
+              </div>
+              <h2 className="mega mt-2 text-[clamp(4.2rem,13vw,11rem)]">
+                Today
               </h2>
             </Reveal>
-            <Reveal as="p" className="m-0 max-w-[440px] text-[1.05rem] leading-relaxed">
-              Here&apos;s where we&apos;re pulling up this week — the schedule updates itself every night at midnight. Striped days are still open, so grab one for your office or event. Follow{" "}
-              <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="font-bold underline">
-                {site.socials.instagramHandle}
-              </a>{" "}
-              for last-minute pop-ups and changes.
+            <Reveal as="div" className="max-w-[480px]">
+              <p className="m-0 text-[1.08rem] leading-relaxed">
+                This schedule shows <b>where we&apos;re pulling up today only</b> — it updates automatically every night at midnight Reno time. Check today&apos;s stops and times below to catch the truck, or follow{" "}
+                <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="font-bold underline decoration-2 underline-offset-2 hover:text-hot">
+                  {site.socials.instagramHandle}
+                </a>{" "}
+                for last-minute pop-ups, weather changes, and weekend drops.
+              </p>
+              <div className="mt-3.5 inline-flex items-center gap-2 border-[2px] border-ink bg-mustard px-3 py-1.5 font-marker text-[.94rem] shadow-hard-xs">
+                <span>✦ Today only — future dates book fast</span>
+              </div>
             </Reveal>
           </div>
           <WeekSchedule />

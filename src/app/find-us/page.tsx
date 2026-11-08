@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = pageMeta({
   title: "Find the Truck",
   description:
-    "Where The Compound Coffee truck is parked this week in Reno and Sparks, NV — daily stops with maps, live open/closed hours, and open dates you can book.",
+    "Where The Compound Coffee truck is parked today in Reno and Sparks, NV — daily stops with maps, live open/closed hours, and open dates you can book.",
   path: "/find-us",
   keywords: ["coffee truck near me Reno", "Reno coffee truck schedule"],
 });
@@ -20,8 +20,8 @@ export default function FindUsPage() {
   return (
     <>
       <JsonLd data={breadcrumbSchema([{ name: "Find the Truck", path: "/find-us" }])} />
-      <PageHero eyebrow="Find the Truck" title="This Week" drip="on the road" accent="text-sky">
-        Here&apos;s where we&apos;re pulling up — the schedule updates itself every night at midnight, Reno time. Striped days are still open, so grab one for your office or event.
+      <PageHero eyebrow="Find the Truck" title="Today" drip="on the road" accent="text-sky">
+        Here&apos;s our live schedule for <b>today only</b> — updated automatically every night at midnight, Reno time. Check our stops below to catch us, or follow our Instagram for last-minute pop-ups.
       </PageHero>
 
       <section id="events" className="bg-sky py-[110px] text-ink">
@@ -49,7 +49,7 @@ export default function FindUsPage() {
             },
             {
               t: "Questions?",
-              d: `Call or text ${site.phone} or send a message — ${site.founder} answers personally.`,
+              d: `Call or text ${site.phone} or send a message — we answer personally.`,
               a: { href: "/contact", label: "Contact us" },
               s: "shadow-[8px_8px_0_var(--color-sky)]",
             },

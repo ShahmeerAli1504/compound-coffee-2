@@ -26,7 +26,7 @@ export default function GalleryPage() {
         Morning stops, cold-foam pours, winter runs downtown and late nights under the casino lights.
       </PageHero>
 
-      <section className="bg-emerald py-[110px] text-cream">
+      {/* <section className="bg-emerald py-[110px] text-cream">
         <div className="wrap">
           <GalleryGrid shots={[...shots, ...moreShots]} />
           <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -38,7 +38,7 @@ export default function GalleryPage() {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section id="film" className="scroll-mt-16 bg-night py-[120px] text-cream">
         <div className="wrap">

@@ -121,8 +121,8 @@ export async function sendInquiry(d: InquiryInput, meta: { ip?: string; page?: s
       `<p style="margin:0 0 14px;line-height:1.6">Hey ${esc(first)},</p>
        <p style="margin:0 0 14px;line-height:1.6">Thanks for reaching out to The Compound Coffee. ${
          d.kind === "booking"
-           ? `${esc(site.founder)} will check the calendar and get back to you with availability and a quote.`
-           : `${esc(site.founder)} will get back to you soon.`
+           ? "We will check the calendar and get back to you with availability and a quote."
+           : "We will get back to you soon."
        } Here's a copy of what you sent:</p>
        ${table(d)}${messageBlock(d)}
        <p style="margin:22px 0 0;line-height:1.6">Need us sooner? Call or text <a href="${site.phoneHref}" style="color:#4a86e8">${esc(site.phone)}</a>.</p>

@@ -34,7 +34,7 @@ export default function BookPage() {
         <div id="inquiry" className="mt-20 grid scroll-mt-24 gap-[46px] lg:grid-cols-[.85fr_1.15fr]">
           <Reveal as="aside" className="self-start border-[3px] border-ink bg-mustard p-8 shadow-[10px_10px_0_var(--color-ink)]">
             <h1 className="m-0 mb-2.5 font-display text-[2.6rem] font-normal uppercase tracking-[.02em]">Book the Truck</h1>
-            <p className="m-0 leading-relaxed">Tell us the date, place and headcount and {site.founder} will get back to you with availability and a quote.</p>
+            <p className="m-0 leading-relaxed">Tell us the date, place and headcount and we&apos;ll get back to you with availability and a quote.</p>
             <ul className="my-5 list-disc pl-5 font-semibold leading-[2]">
               <li>Workplace coffee catering</li>
               <li>Private events &amp; celebrations</li>

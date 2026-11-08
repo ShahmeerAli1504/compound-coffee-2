@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import logo from "@/assets/img/logo-badge.jpg";
+import bagmanArt from "@/assets/img/compound-bagman-art.jpg";
 import { playlist, SPECIALTY_PRICE } from "@/lib/menu";
 
 /* "The Playlist" — tap a track and the cup pours that drink. */
@@ -66,7 +66,7 @@ export function Playlist() {
     <div ref={wrap} className="grid items-start gap-10 lg:grid-cols-[1.25fr_.75fr]">
       <div className="border-[3px] border-ink bg-ink text-cream shadow-[12px_12px_0_var(--color-hot)] max-lg:order-2">
         <div className="flex items-center gap-[18px] border-b-2 border-dashed border-[#3a3546] px-4 py-[18px] sm:px-6 sm:py-[22px]">
-          <Image src={logo} alt="Compound Coffee cover art" sizes="84px" className="size-[60px] flex-none border-[3px] border-cream bg-sky object-cover sm:size-[84px]" />
+          <Image src={bagmanArt} alt="The Compound cover art" sizes="84px" className="size-[60px] flex-none border-[3px] border-cream bg-ink object-cover sm:size-[84px]" />
           <div>
             <h3 className="m-0 font-drip text-[clamp(1.8rem,4vw,2.8rem)] font-normal leading-none text-sky">The Playlist</h3>
             <p className="m-0 mt-1.5 text-[.86rem] tracking-[.05em] text-lilac">SPECIALTY DRINKS • {playlist.length} TRACKS • MEDIUM $7 / LARGE $8</p>

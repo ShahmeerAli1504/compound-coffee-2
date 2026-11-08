@@ -20,3 +20,5 @@ vercel.env
 *.pem
 npm-debug.log*
 .vercel
+*.mov
+

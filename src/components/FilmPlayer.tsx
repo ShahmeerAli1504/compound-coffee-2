@@ -47,7 +47,6 @@ export function FilmPlayer() {
     <div className="relative aspect-video overflow-hidden border-[3px] border-cream bg-black shadow-[14px_14px_0_var(--color-purple)]">
       <video
         ref={vid}
-        src="/video/after-hours.mp4"
         poster="/video/after-hours-poster.jpg"
         playsInline
         muted
@@ -57,7 +56,9 @@ export function FilmPlayer() {
         onPause={() => setPlaying(false)}
         className="size-full object-cover"
         aria-label="The Compound After Hours — late-night coffee under the Reno lights"
-      />
+      >
+        <source src="/video/after-hours.mp4" type="video/mp4" />
+      </video>
       <div className="pointer-events-none absolute inset-x-2.5 bottom-2.5 flex sm:inset-x-4 sm:bottom-4 items-center justify-between gap-2.5">
         <span className="whitespace-nowrap bg-black/60 px-2 py-1 font-marker text-[.8rem] text-mustard sm:px-2.5 sm:text-base">
           <span className="mr-2 inline-block size-[9px] animate-blinkdot rounded-full bg-hot" />

@@ -96,7 +96,7 @@ export function InquiryForm({ kind = "booking" }: { kind?: InquiryKind }) {
       <div role="status" className="grid content-start gap-4 border-[3px] border-ink bg-green p-8 text-ink shadow-hard">
         <p className="mega text-[clamp(2.6rem,6vw,4rem)]">Got it ✌</p>
         <p className="m-0 text-[1.08rem] leading-relaxed">
-          Thanks for reaching out — {site.founder} will get back to you {booking ? "with availability and a quote" : "soon"}. A copy is on its way to your inbox (check spam just in case).
+          Thanks for reaching out — we will get back to you {booking ? "with availability and a quote" : "soon"}. A copy is on its way to your inbox (check spam just in case).
         </p>
         <p className="m-0 font-bold">
           Need us sooner? Call or text <a href={site.phoneHref} className="underline">{site.phone}</a>.
@@ -170,7 +170,7 @@ export function InquiryForm({ kind = "booking" }: { kind?: InquiryKind }) {
         <button className="btn" type="submit" disabled={sending}>
           {sending ? "Sending…" : booking ? "Send Inquiry →" : "Send Message →"}
         </button>
-        <p className="m-0 text-[.82rem] opacity-70">Goes straight to {site.founder}&apos;s inbox.</p>
+        <p className="m-0 text-[.82rem] opacity-70">Goes straight to our inbox.</p>
       </div>
 
       {status.state === "error" && (

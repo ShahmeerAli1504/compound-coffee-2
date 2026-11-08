@@ -21,7 +21,7 @@ export default function ContactPage() {
         data={breadcrumbSchema([{ name: "Contact", path: "/contact" }])}
       />
       <PageHero
-        eyebrow="Founder • Barista • Vintage Seller"
+        eyebrow="Coffee × Culture × Community"
         title="Say Hi"
         drip="talk to BAGMAN"
         accent="text-sky"

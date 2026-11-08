@@ -3,7 +3,6 @@ export const site = {
   tagline: "Where coffee is subjective.",
   description:
     "The Compound Coffee — Reno's street-art coffee truck. Specialty drinks, breakfast sandwiches, workplace catering, private events and pop-ups. Where coffee is subjective.",
-  founder: "Jaffet",
   phone: "(775) 710-1960",
   phoneHref: "tel:+17757101960",
   email: "thecompound.inc24@gmail.com",
@@ -15,8 +14,8 @@ export const site = {
     tiktok: "https://www.tiktok.com/@_thecompoundcoffee",
     vintage: "https://www.instagram.com/thecompound_vintage/",
     vintageHandle: "@thecompound_vintage",
-    yelp: "https://www.yelp.com/biz/compound-coffee-reno",
-    yelpReview: "https://www.yelp.com/writeareview/biz/compound-coffee-reno",
+    yelp: "https://yelp.to/ho7HlKEtgn",
+    yelpReview: "https://yelp.to/ho7HlKEtgn",
   },
 } as const;
 
@@ -24,7 +23,7 @@ export const nav = [
   { href: "/about", label: "Story" },
   { href: "/menu", label: "Menu" },
   { href: "/find-us", label: "Find Us" },
-  { href: "/gallery", label: "Gallery" },
+  // { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

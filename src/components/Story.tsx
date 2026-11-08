@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/img/logo-badge.jpg";
-import mural from "@/assets/img/i-love-coffee-mural.jpg";
+import bagmanArt from "@/assets/img/compound-bagman-art.jpg";
+import truckMural from "@/assets/img/truck-bagman-mural.jpg";
 import { FlowText } from "./FlowText";
 import { Reveal } from "./Reveal";
 
@@ -26,14 +26,14 @@ export function Story({ teaser = false }: { teaser?: boolean }) {
       <div className="wrap grid items-center gap-16 lg:grid-cols-[.9fr_1.1fr]">
         <Reveal className="relative min-h-[440px] lg:min-h-[540px]">
           <Image
-            src={logo}
-            alt="The Compound Coffee illustrated logo featuring the paper-bag crew and the truck"
+            src={bagmanArt}
+            alt="The Compound Modern Art Is Subjective — Bagman artwork"
             sizes="(max-width: 1024px) 70vw, 400px"
-            className="absolute left-0 top-0 w-[72%] -rotate-4 border-[3px] border-ink bg-white p-3 shadow-hard-lg"
+            className="absolute left-0 top-0 w-[72%] -rotate-4 border-[3px] border-ink bg-black p-2.5 shadow-hard-lg"
           />
           <Image
-            src={mural}
-            alt="Bagman, The Compound’s paper-bag character, pouring milk into a coffee"
+            src={truckMural}
+            alt="Bagman, The Compound’s paper-bag character, pouring milk into a coffee on the truck"
             sizes="(max-width: 1024px) 52vw, 300px"
             className="absolute bottom-0 right-0 w-[52%] rotate-5 border-[3px] border-ink shadow-[-10px_10px_0_var(--color-hot)]"
           />
