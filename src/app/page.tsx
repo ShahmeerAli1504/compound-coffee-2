@@ -70,7 +70,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* <GalleryRide /> */}
+      <GalleryRide />
 
       {/* TODAY'S SCHEDULE */}
       <section id="events" className="bg-sky py-[120px] text-ink">

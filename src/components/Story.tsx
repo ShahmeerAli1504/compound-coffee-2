@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import bagmanArt from "@/assets/img/compound-bagman-art.jpg";
+import bagmanArt from "@/assets/img/compound-coffee-subjective.jpg";
 import truckMural from "@/assets/img/truck-bagman-mural.jpg";
 import { FlowText } from "./FlowText";
 import { Reveal } from "./Reveal";
@@ -27,14 +27,16 @@ export function Story({ teaser = false }: { teaser?: boolean }) {
         <Reveal className="relative min-h-[440px] lg:min-h-[540px]">
           <Image
             src={bagmanArt}
-            alt="The Compound Modern Art Is Subjective — Bagman artwork"
+            alt="The Compound Coffee Is Subjective — Bagman graffiti artwork"
             sizes="(max-width: 1024px) 70vw, 400px"
-            className="absolute left-0 top-0 w-[72%] -rotate-4 border-[3px] border-ink bg-black p-2.5 shadow-hard-lg"
+            placeholder="blur"
+            className="absolute left-0 top-0 w-[72%] -rotate-4 border-[3px] border-ink bg-black p-2 shadow-hard-lg"
           />
           <Image
             src={truckMural}
             alt="Bagman, The Compound’s paper-bag character, pouring milk into a coffee on the truck"
             sizes="(max-width: 1024px) 52vw, 300px"
+            placeholder="blur"
             className="absolute bottom-0 right-0 w-[52%] rotate-5 border-[3px] border-ink shadow-[-10px_10px_0_var(--color-hot)]"
           />
           <span className="absolute right-[4%] top-[6%] z-[2] rotate-6 border-[3px] border-ink bg-mustard px-4 py-2.5 font-marker text-[1.05rem]">

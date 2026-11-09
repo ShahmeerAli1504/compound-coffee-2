@@ -76,7 +76,7 @@ export function Hero() {
         <div ref={truck} className="truck-mask relative z-[2] mt-[12vh] w-[min(1100px,96vw)] will-change-transform [transform:translateY(30vh)_scale(.94)] max-sm:mt-0 max-sm:w-[150vw]">
           <Image
             src={truckNight}
-            alt="The Compound Coffee truck wrapped in street art, parked at night in front of downtown Reno casinos"
+            alt="The Compound Coffee trailer wrapped in vibrant street art, parked at night under the Reno lights"
             priority
             placeholder="blur"
             sizes="(max-width: 640px) 150vw, 1100px"

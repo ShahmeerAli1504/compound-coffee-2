@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import bagmanArt from "@/assets/img/compound-bagman-art.jpg";
+import bagmanArt from "@/assets/img/compound-coffee-subjective.jpg";
 import { playlist, SPECIALTY_PRICE } from "@/lib/menu";
 
 /* "The Playlist" — tap a track and the cup pours that drink. */

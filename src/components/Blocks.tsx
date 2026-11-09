@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import graffiti from "@/assets/img/compound-graffiti.jpg";
+import trailerRenoSkyline from "@/assets/img/trailer-reno-skyline.jpg";
 import { site } from "@/lib/site";
 import { Bag } from "./Bag";
 import { FlowText } from "./FlowText";
@@ -114,16 +115,16 @@ export function Vintage() {
 export function BookHero({ cta = "form", top = false }: { cta?: "form" | "page"; top?: boolean }) {
   return (
     <div className={`relative grid place-items-center ${top ? "min-h-[min(82vh,720px)] pb-16 pt-32" : "h-[min(70vh,620px)] min-h-[460px]"} overflow-hidden border-b-[3px] border-ink text-center text-cream`}>
-      <video
-        src="/video/night-loop.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-        className="absolute inset-0 size-full object-cover brightness-[.55] saturate-[1.2]"
+      <Image
+        src={trailerRenoSkyline}
+        alt="The Compound Coffee trailer Reno skyline mural at night"
+        fill
+        priority={top}
+        placeholder="blur"
+        sizes="100vw"
+        className="object-cover brightness-[.42] saturate-[1.15]"
       />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-night/60" />
       <Reveal className="relative z-[1] px-4">
         <span className="eyebrow">Private Events • Workplace Catering • Pop-Ups</span>
         <h2 className="mega mt-3 text-[clamp(3.6rem,12vw,11rem)]">
