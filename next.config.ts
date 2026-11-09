@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
   },
   // nodemailer is only used on the server (the /api/inquiry route)
   serverExternalPackages: ["nodemailer"],
+  async redirects() {
+    return [
+      { source: "/index.html", destination: "/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
